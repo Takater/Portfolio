@@ -29,7 +29,7 @@ function Skills () {
                     "Full Stack Web Development: HTML, CSS, JavaScript, Python",
                     "Libraries/Frameworks: React, Bootstrap, Node.js, Flask",
                     "Databases: MySQL, SQLite, MongoDB",
-                    "Others: VBA, Selenium, Web 3.0, Advanced Mathematics"
+                    "Others: C, VBA, Web 3.0, RPA/UiPath, Mathematics"
                 ]}
             />
             <Skill

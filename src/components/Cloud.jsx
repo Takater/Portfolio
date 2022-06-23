@@ -31,7 +31,8 @@ function Cloud (props) {
         top: "50%",
         left: "15%",
         fontWeight: "bold",
-        color: "#11999E"
+        color: "#11999E",
+        cursor: "pointer"
     };
 
     const cloudText = {
@@ -39,7 +40,8 @@ function Cloud (props) {
         top: "50%",
         left: "1.5%",
         fontWeight: "bold",
-        color: "#11999E"
+        color: "#11999E",
+        cursor: "pointer"
     }
 
     function goTo (e) {

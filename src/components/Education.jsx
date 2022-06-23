@@ -5,7 +5,12 @@ import { Carousel } from 'react-responsive-carousel'
 
 function Education () {
 
-    function NewLine(text) { return text.split('\n').map((str, index) => <span key={index}>• {str}<br /><br /></span>); }
+    let coursesCount
+
+    function NewLine(text) {
+        coursesCount = text.split('\n').length
+        return text.split('\n').map((str, index) => <span key={index}>• {str}<br /><br /></span>);
+    }
 
     return (
         <div id="education">
@@ -33,7 +38,7 @@ function Education () {
                     start="Jan/2022"
                     end="Mar/2022"
                     description="Introduction to Computer Science course, including 28 hours of video lessons, 9 problem sets, and one final project.
-                    Involving about 120 hours amongst theory and practice. Skills developed: HTML, CSS, JavaScript, Python, SQLite, and Flask."
+                    Involving about 120 hours amongst theory and practice. Skills developed: HTML, CSS, JavaScript, C, Python, SQLite, and Flask."
                 />
                 <Study
                     course="2022 The Complete Web Development Bootcamp"
@@ -45,11 +50,12 @@ function Education () {
                     for the year of 2022. Skills developed: HTML, CSS, JavaScript, Node.js, React.js, MySQL, MongoDB, Web 3.0 (Blockchain, Crypto, NFT, and ICP)."
                 />
                 <Study
-                    course="Short Courses"
                     school="Udemy, Fundação Bradesco"
                     description={NewLine("Introduction To Project Management (10 hours) — Fundação Bradesco\n" +
                     "Introduction To Object-Oriented Programming (5 hours) — Fundação Bradesco\n" +
-                    "Mathematics, Probability & Statistics for Machine Learning (14 hours) — Udemy (PhD Donatus Obomighie)")}
+                    "Mathematics, Probability & Statistics for Machine Learning (14 hours) — Udemy (PhD Donatus Obomighie)\n" +
+                    "Complete UiPath RPA Developer Course (11 hours) — Udemy (Leon Petrou)")}
+                    course={"Short Courses " + "[" + coursesCount + "]"}
                 />
             </Carousel>
             </div>

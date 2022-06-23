@@ -22,9 +22,9 @@ function Work () {
                 duration="Aug/21 - Currently (10 months)"
                 description="Assistance in recruitment and selection processes:
                 scheduling interviews, applying Excel tests and providing feedback
-                for basic and intermediate levels; Automation
-                development for HR processes, using VBA and/or Python and
-                integration with the employees’ database (SQL)."
+                for basic and intermediate levels; Automation development for HR 
+                processes. Using VBA with Macro-enabled Excel sheets and RPA 
+                development with UiPath and VB .Net"
             />
             <Job
                 position="English Teacher"
