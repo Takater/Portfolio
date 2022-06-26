@@ -1,4 +1,7 @@
 # Portfolio
-Updated education, work, personal projects and contact information.
+## Deployed to Heroku: [GuiMoret-Portfolio](http://guimoret-portfolio.herokuapp.com/)
+---
+Updated educational and professional records.<br>
+Listing of personal projects and contact information.
 
-#### Made with **React.js**
+#### Built with **React.js**

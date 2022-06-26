@@ -13,7 +13,7 @@ function Personal () {
         const LinkStyle = {
             color: props.text === "In Progress" && '#0ff'
         }
-        return (<a style={LinkStyle} className="project-link" href={props.href}>{props.text}</a>);
+        return (<a target="_blank" rel="noreferrer" style={LinkStyle} className="project-link" href={props.href}>{props.text}</a>);
     }
 
     return (
@@ -41,6 +41,7 @@ function Personal () {
                         title="Full Stack Web Apps"
                         items = {[
                             <Link href="https://github.com/Takater/CS50x-FinalProject" text="Game Zone (Cs50x Final Project)"/>,
+                            <Link href="https://github.com/Takater/MyStocks" text="My Stocks App"/>,
                             <Link href="https://github.com/Takater" text="In Progress"/>
                         ]}
                     />
