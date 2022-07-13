@@ -18,13 +18,14 @@ function Personal () {
 
     return (
         <div id="personal-projects">
-            <h2>Personal Projects</h2>
+            <h2><span>Personal Projects</span></h2>
             <Paper
                 sx={{
                     p: 2,
                     margin: 'auto 20% auto 25%',
                     flexGrow: 1,
-                    backgroundColor: '#EEF6F6',
+                    background: 'rgba(237, 237, 255, 0.7)',
+                    borderRadius: "10%"
                 }}
             >
                 <Grid container spacing={4}>

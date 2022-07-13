@@ -3,23 +3,40 @@
 
 body{
     margin: 0;
-    background-color: #EAF6F6;
     text-align: center;
     color: #40514E;
+    overflow-x: hidden;
+    background-image: url("./images/codingBg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1{
     margin-top: 1rem;
-    font-family: 'Pacifico', cursive;
-    font-size: 3.75rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 4rem;
+}
+
+h1>span, h2>span {
+    background: rgba(210, 178, 156, 1);
+    border-radius: 15%;
+    padding: 0.75%;
+}
+
+h2 {
+    font-size: 2.5rem;
 }
 
 h1, h2{
-    color: #66BFBF;
+    color: #3e5159;
+    text-shadow: #000 2px 2px;
 }
 
 h2, h3{
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 img {
@@ -27,11 +44,11 @@ img {
 }
 
 hr{
-    border-color: #555;
-    border-width: 5px;
+    border-color: #2f9;
+    border-width: 10px;
     border-style: none;
-    border-top-style: dotted;
-    width: 50rem;
+    border-top-style: double;
+    width: 100%;
     margin: 5rem auto;
 }
 
@@ -43,8 +60,13 @@ hr{
     text-align: center;
 }
 
-header>h3{
-    color: #444;
+header>div>h3 {
+    color: #d2b29c;
+    text-shadow: #000 1px 1px 1px;
+}
+
+h3>em {
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .dev{
@@ -52,10 +74,9 @@ header>h3{
 }
 
 .profilepic{
-    width: 10%;
-    max-height: 150px;
+    width: 20%;
     margin: 0 auto;
-    border-radius: 75%;
+    border-radius: 25%;
 }
 
 .translateButton {
@@ -78,10 +99,23 @@ header>h3{
     text-align: left;
     line-height: 2;
     padding-bottom: 12%;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .skill-row>h3 {
-    color: #11999E;
+    color: #f2de79;
+    text-shadow: #000 1px 2px;
+    margin-left: 2%;
+}
+
+.skill-row>ul>li {
+    color: #fff;
+    text-shadow: #000 2px 1px 2px;
+}
+
+li>strong {
+    color: #f2de79;
+    text-shadow: #000 1px 2px;
 }
 
 /* EDUCATION & WORK */
@@ -91,6 +125,11 @@ header>h3{
     margin: auto;
     text-align: left;
     height: 15rem;
+}
+
+.educational>h3, .job>h3 {
+    color: #000;
+    text-shadow: #d2b29c 1px 1px 1px;
 }
 
 .certificate-link {
@@ -113,13 +152,19 @@ hr.listHR {
 }
 
 .carouselStyle {
-    margin-left: 20%;
+    margin-left: auto;
+    width: 80%;
+}
+
+.axis-horizontal {
+    border-radius: 20%;
+    opacity: 0.7;
 }
 
 .control-arrow {
     background-color: black !important;
     opacity: 1 !important;
-    top: 50% !important;
+    top: 45% !important;
     bottom: auto !important;
   }
 
@@ -127,16 +172,19 @@ hr.listHR {
     margin: 3% auto 2% 3% !important;
     height: 6.5rem;
     overflow-y: auto;
+    color: #000 !important;
+    font-weight: 500;
 }
 
 p.carousel-status {
     z-index: 2 !important;
     font-size: 1rem !important;
     color: black !important;
+    margin-right: 10%;
 }
 
 .slide.selected {
-    background-color: #dedeff;
+    background-color: #ededff;
 }
 
 /* PROJECTS */
@@ -156,6 +204,12 @@ p.carousel-status {
     color: #aff;
 }
 
+.MuiTypography-subtitle1 {
+    color:#000;
+    font-weight: 600 !important;
+    text-shadow: #d2b29c 2px 2px;
+}
+
 /* CONTACT */
 
 .contactIcon, .contactLink {
@@ -165,6 +219,7 @@ p.carousel-status {
 
 .contactIcon {
     margin-left: 2rem;
+    color: #d2b29c;
 }
 
 .btn {
@@ -178,7 +233,8 @@ p.carousel-status {
     -moz-border-radius: 8;
     border-radius: 8px;
     font-family: 'Oswald', sans-serif;
-    color: #ffffff;
+    color: #3e5951;
+    text-shadow: #d2b29c 1px 1px;
     font-size: 20px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
@@ -197,12 +253,12 @@ p.carousel-status {
 /* FOOTER */
 
 .bottom-container{
-    background-color: #66BFBF;
-    padding: 1rem;
+    background: rgba(100, 220, 220, 0.5);
+    padding: 0.5rem;
     margin-top: 1rem;
 }
 
 .bottom-container>p{
-    color: #EAF6F6;
+    color: #dfdfdf;
     margin: 2rem;
 }

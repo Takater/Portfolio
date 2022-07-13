@@ -5,7 +5,7 @@ function Skills () {
 
     return (
         <div id="skills" className="middle-container">
-            <h2>Skills</h2>
+            <h2><span>Skills</span></h2>
             <Skill
                 image="https://cdn-icons-png.flaticon.com/512/3062/3062533.png"
                 title="Soft Skills"

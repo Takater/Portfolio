@@ -6,7 +6,7 @@ import { Carousel } from 'react-responsive-carousel'
 function Work () {
     return (
         <div id="work-experience">
-            <h2>Work Experience</h2>
+            <h2><span>Work Experience</span></h2>
             <div className="carouselStyle">
             <Carousel
                 width="75%"
@@ -16,15 +16,25 @@ function Work () {
                 statusFormatter={(currentItem, total) => currentItem + "/" + total}
                 showThumbs={false}
             >
+            <Job 
+                position="Systems Support & Automation Development"
+                company="Grupo Rovema"
+                duration="Jun/22 - Currently (1 month)"
+                description="Internal customers requests analysis and study of the 
+                company's business processes mapping to: assess the feasibility, 
+                and if so, design and develop automations for the departments in the 
+                various units of the Group. Currently working with UiPath for RPA 
+                development with VB .Net, VBA for Excel worksheets Macros and Python 
+                for SQL Database integration."
+            />
             <Job
                 position="HR Assistant"
                 company="Grupo Rovema"
-                duration="Aug/21 - Currently (10 months)"
+                duration="Aug/21 - Jun/22 (10 months)"
                 description="Assistance in recruitment and selection processes:
                 scheduling interviews, applying Excel tests and providing feedback
                 for basic and intermediate levels; Automation development for HR 
-                processes. Using VBA with Macro-enabled Excel sheets and RPA 
-                development with UiPath and VB .Net"
+                processes using VBA with Macro-enabled Excel sheets"
             />
             <Job
                 position="English Teacher"

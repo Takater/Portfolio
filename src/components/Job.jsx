@@ -11,7 +11,7 @@ function Job (props) {
             <h3>{position}</h3>
             <p className="place">{company}</p>
             <p className="duration">{duration}</p>
-            <p className="description" style={{color: "black"}}>{description}</p>
+            <p className="description">{description}</p>
             <hr className="listHR"/>
         </div>
     );

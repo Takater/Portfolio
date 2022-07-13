@@ -14,7 +14,7 @@ function Education () {
 
     return (
         <div id="education">
-            <h2>Education</h2>
+            <h2><span>Education</span></h2>
             <div className="carouselStyle">
             <Carousel
                 width="75%"
