@@ -5,7 +5,7 @@ import Clouds from './Clouds'
 function Header () {
 
     return (
-        <header>
+        <header id="headerTag">
             <div className="header-div">
                 <Clouds />
                 <h1><span> Guilherme Moret </span></h1>

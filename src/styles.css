@@ -52,6 +52,20 @@ hr{
     margin: 5rem auto;
 }
 
+#back2Top {
+    color: #d2d29c;
+    cursor: pointer;
+    background: rgba(50, 50, 50, 0.5);
+    border: none;
+    border-radius: 100%;
+    margin-top: 5%;
+}
+
+#back2Top:hover {
+    color: #fff;
+    background: rgba(50, 50, 50, 0.8);
+}
+
 /* HEADER */
 
 .header-div{
