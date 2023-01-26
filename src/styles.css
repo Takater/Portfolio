@@ -4,26 +4,16 @@
 body{
     margin: 0;
     text-align: center;
-    color: #40514E;
-    overflow-x: hidden;
-    background-image: url("./images/codingBg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    color: #10bcd1;
+    background-color: #030325;
 }
 
 h1{
     margin-top: 1rem;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 500;
+    font-family: 'Nova Flat', cursive;
+    font-weight: 900;
     font-style: italic;
     font-size: 4rem;
-}
-
-h1>span, h2>span {
-    background: rgba(210, 178, 156, 1);
-    border-radius: 15%;
-    padding: 0.75%;
 }
 
 h2 {
@@ -31,7 +21,6 @@ h2 {
 }
 
 h1, h2{
-    color: #3e5159;
     text-shadow: #000 2px 2px;
 }
 
@@ -68,14 +57,42 @@ hr{
 
 /* HEADER */
 
-.header-div{
+#headerTag{
     position: relative;
-    padding-top: 2rem;
+    padding: 25vh 0;
     text-align: center;
+    overflow: hidden;
+}
+
+#headerTag::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url("./images/gui.png");
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position: center top;
+    filter: hue-rotate(12.5deg) opacity(0.15) blur(1px);
+    border-radius: 0 0 50% 50%;
+    z-index: -2;
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+    #headerTag {
+        padding: 5vh 2vw;
+    }
+
+    #headerTag::before {
+        background-size: 100%;
+        background-position: center;
+        border-radius: 0 0 25% 25%;
+    }
 }
 
 header>div>h3 {
-    color: #d2b29c;
+    color: #213e9c;
     text-shadow: #000 1px 1px 1px;
 }
 
