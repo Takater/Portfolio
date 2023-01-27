@@ -6,6 +6,7 @@ import imgHTML from '../images/html.png'
 import devFullStack from '../images/devFullStack.png'
 import automation from '../images/automation.png'
 import web3 from '../images/web3.png'
+import KDALIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
 
 function Personal () {
 
@@ -18,7 +19,7 @@ function Personal () {
 
     return (
         <div id="personal-projects">
-            <h2><span>Personal Projects</span></h2>
+            <h2><span>Projects</span></h2>
             <Paper
                 sx={{
                     p: 2,
@@ -63,6 +64,11 @@ function Personal () {
                     />
                 </Grid>
             </Paper>
+            <button id="back2Top" onClick={() => window.location.pathname = "/"}>
+                <KDALIcon 
+                    fontSize="large"
+                />
+            </button>
         </div>
     );
 }

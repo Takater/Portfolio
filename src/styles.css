@@ -4,8 +4,8 @@
 body{
     margin: 0;
     text-align: center;
-    color: #10bcd1;
-    background-color: #030325;
+    color: #318f9a;
+    background-color: #050a30;
 }
 
 h1{
@@ -14,11 +14,12 @@ h1{
     font-weight: 900;
     font-style: italic;
     font-size: 4rem;
-}
+} 
 
 h2 {
     font-size: 2.5rem;
 }
+
 
 h1, h2{
     text-shadow: #000 2px 2px;
@@ -28,12 +29,21 @@ h2, h3{
     font-family: 'Ubuntu', sans-serif;
 }
 
+@media screen and (max-width: 425px) {
+    h1 {
+        font-size: 3rem;
+    }
+    h3 {
+        font-size: 1.25rem;
+    }
+}
+
 img {
     display: flex;
 }
 
 hr{
-    border-color: #2f9;
+    border-color: #095d40;
     border-width: 10px;
     border-style: none;
     border-top-style: double;
@@ -59,9 +69,8 @@ hr{
 
 #headerTag{
     position: relative;
-    padding: 25vh 0;
+    padding: 20vh 0;
     text-align: center;
-    overflow: hidden;
 }
 
 #headerTag::before {
@@ -73,7 +82,7 @@ hr{
     background-repeat: no-repeat;
     background-size: 75%;
     background-position: center top;
-    filter: hue-rotate(12.5deg) opacity(0.15) blur(1px);
+    filter: hue-rotate(12.5deg) opacity(0.1) blur(1px);
     border-radius: 0 0 50% 50%;
     z-index: -2;
 
@@ -91,6 +100,12 @@ hr{
     }
 }
 
+.titleHi {
+    font-size: 2rem;
+    color: #10bcd1;
+    font-style: normal;
+}
+
 header>div>h3 {
     color: #213e9c;
     text-shadow: #000 1px 1px 1px;
@@ -100,15 +115,23 @@ h3>em {
     background: rgba(0, 0, 0, 0.8);
 }
 
-.dev{
-    margin: 0 auto;
+.header-div>p{
+    font-family: 'Ubuntu', sans-serif;
+    line-height: 4vh;
+    word-spacing: calc(1vw/4);
+    color: #c0c0fa;
+    text-shadow: #050a30 1px 1px 1px;
 }
 
-.profilepic{
-    width: 20%;
-    margin: 0 auto;
-    border-radius: 25%;
+@media screen and (min-width: 320px) and (max-width: 425px) {
+    .header-div>p{
+        font-size: 75%;
+        line-height: 5vh;
+        word-spacing: calc(1vw/2);
+    }
+
 }
+
 
 .translateButton {
     border: none;

@@ -18,7 +18,6 @@ function Project (props) {
     function ListSelect() {
         return (
             <List
-                type="project"
                 items={props.items}
             />
         )

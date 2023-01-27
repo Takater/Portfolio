@@ -1,47 +1,24 @@
 import './styles.css';
 import Header from './components/Header'
-import Skills from './components/Skills'
-import Education from './components/Education'
-import Work from './components/Work'
-import Personal from './components/Personal'
 import Contact from './components/Contact'
-import KDAUIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import Personal from './components/Personal';
+import Budget from './components/Budget';
 
 function App() {
 
-  function goToTop () {
-    window.location.hash = "#headerTag"
-  }
-
-  function buttonTop () {
-    return (
-      <button id="back2Top" onClick={goToTop}>
-        <KDAUIcon 
-          fontSize="large"
-        />
-      </button>
-    );
-  }
+  const page = window.location.pathname;
 
   return (
     <div>
-      <Header />
-      <hr />
-      <Skills />
-      {buttonTop()}
-      <hr />
-      <Education />
-      {buttonTop()}
-      <hr />
-      <Work />
-      {buttonTop()}
-      <hr />
-      <Personal />
-      {buttonTop()}
+      <header id="headerTag">
+        {page === "/" && <Header /> }
+        {page === "/projects-done" && <Personal />}
+        {page === "/project-budget" && <Budget />}
+      </header>
       <hr />
       <Contact />
       <div className="bottom-container">
-        <p><em>2022 © Guilherme Moret</em></p>
+        <p><em>2023 © Guilherme Moret</em></p>
       </div>
     </div>
   );
