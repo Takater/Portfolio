@@ -64,7 +64,7 @@ function Personal () {
                     />
                 </Grid>
             </Paper>
-            <button id="back2Top" onClick={() => window.location.pathname = "/"}>
+            <button className="backHome" onClick={() => window.location.pathname = "/"}>
                 <KDALIcon 
                     fontSize="large"
                 />
