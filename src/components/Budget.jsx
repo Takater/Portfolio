@@ -19,15 +19,15 @@ function Budget() {
             <h2>Project Budget</h2>
             <form id="formBudget">
                 {/* NAME */}
-                <label htmlFor="name" className="form-label">Name</label><br />
+                <label htmlFor="name" className="form-label">Your Name</label><br />
                 <input id="name" type="text" className="form-control" required />
 
                 {/* EMAIL */}
-                <label htmlFor="email" className="form-label">E-mail</label><br />
+                <label htmlFor="email" className="form-label">Your E-mail</label><br />
                 <input id="email" type="email" className="form-control" required/>
 
                 {/* PHONE */}
-                <label htmlFor="phone" className="form-label">Phone Number</label><br />
+                <label htmlFor="phone" className="form-label">Your Phone Number</label><br />
                 <input id="phone" type="phone" className="form-control" required/>
 
                 {/* TYPE */}
@@ -41,7 +41,7 @@ function Budget() {
                 <FormItems 
                     type={selectedType === '' ? 'DFS' : selectedType} 
                 />
-
+                <br />
                 <button type="button" className="btn btn-success btn-sm" id="submitBtn" onClick={submitForm}>Enviar</button>
             </form><br />
             <button className="backHome" onClick={() => window.location.pathname = "/"}>
