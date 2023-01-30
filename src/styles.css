@@ -190,15 +190,24 @@ h3>em {
     margin-bottom: 2%;
 }
 
-#formSecondPart>div {
+.DFS-checkboxes {
     text-align: left;
-    justify-content: center;
+    margin-left: 20%; margin-top: 3%;
 }
 
 #formSecondPart>div>label {
     margin-left: 5%;
     color: #0a0a0a;
     font-weight: 500;
+}
+
+#description {
+    width: 100%;
+}
+
+#characters {
+    font-size: x-small;
+    color:#050a30;
 }
 
 /* CONTACT */

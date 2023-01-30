@@ -23,8 +23,8 @@ function Bubble (props) {
 
     const bubbleText = {
         position: "absolute",
-        top: props.text.length >= 10 ? "40%" : "45%",
-        left: props.text.length >= 15 ? (isHovered ? "25%" : "20%") : (props.text.length > 10 ? "32%" : "30%"),
+        top: "33%",
+        left: props.text.length >= 15 ? (isHovered ? "25%" : "20%") : "28%",
         textAlign: "center",
         textShadow: "#000 1px 2px 1px",
         fontSize: "100%",
@@ -34,7 +34,7 @@ function Bubble (props) {
 
     const mobileStyle = {
         position: "relative",
-        width: "30%",
+        width: isMobile ? "30%" : "20%",
         top: "0",
         display: "inline",
         float: "left"
@@ -42,8 +42,8 @@ function Bubble (props) {
 
     const mobileText = {
         position: "absolute",
-        fontSize: isMobile ? "60%" : "80%",
-        top: "45%",
+        fontSize: isMobile ? "60%" : "100%",
+        top: "35%",
         left: "32%",
         textAlign: "left",
         textShadow: "#005500 2px 1px 2px",
