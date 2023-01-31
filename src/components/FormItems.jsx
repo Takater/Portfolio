@@ -3,26 +3,38 @@ import { useState } from "react";
 
 function FormItems(props) {
 
-    // Hook to reference checkboxes
+    // Hooks to reference checkboxes
     const [checkboxes, setCheckboxes] = useState([]);
 
-    // Hook to make checkboxes properly clickable
+    // Function to be added to checkboxes and labels
+    function handleCheckboxClick(event) {
+        /* 
+            GETS THE CORRECT TARGET FOR A CLICK EITHER ON BOX OR ON LABEL,
+            PREVENTS EVENT TO BE RE-RAN AFTER TOGGLING BOX,
+            TOGGLE CHECKBOX CHECKED
+        */
+        let target = event.target.nodeName === 'INPUT' ? event.target : document.querySelector(`label[for="${event.target.id}"]`);
+        target.preventDefault();
+        return target.checked = !target.checked;
+    }
+
+    // Hook to add onClick event to checkboxes and labels
     useEffect(() => {
+        /*
+            SET THE ARRAY OF CHECKBOXES,
+            IF CHECKBOXES HAVE BEEN RENDERED START A LOOP FOR EACH CHECKBOX:
+                ADDS FUNCTION TO CHECKBOX ONCLICK EVENT,
+                GETS LABEL FOR CURRENT CHECKBOX,
+                ADDS FUNCTION TO CURRENT LABEL
+            THE SECOND PARAMETER IS THE OBJECT TO TRIGGER THE UPDATE
+        */
         setCheckboxes(document.querySelectorAll('input[type="checkbox"]'));
         checkboxes.length > 0 && checkboxes.forEach((checkbox) => {
-            checkbox.addEventListener('click', (event) => {
-                return event.target.checked = !event.target.checked;
-            });
-            const label = document.querySelector(`label[for="${checkbox.id}]`);
-            if (label) { 
-                console.log(label.id);
-                label.addEventListener('click', (event) => {
-                    let box = document.querySelector(`input[id="${event.target.htmlFor}"]`);
-                    return box.checked = !box.checked;
-                });
-            }
+            checkbox.addEventListener('click', handleCheckboxClick);
+            const label = document.querySelector(`label[for="${checkbox.id}"]`);
+            label && label.addEventListener('click', handleCheckboxClick);
         });
-    }, []);
+    }, [checkboxes]);
 
     // Max length for description box
     const textMaxLength = 200;
@@ -38,7 +50,7 @@ function FormItems(props) {
             document.querySelector("#description").style.borderColor = "red";
         } else {
             document.getElementById("characters").style.color = "#050a30";
-            document.querySelector("textarea").style.borderColor = "";
+            document.querySelector("#description").style.borderColor = "";
         }
     }
 
@@ -49,9 +61,64 @@ function FormItems(props) {
         setnewPageChecked(newPage.checked);
     }
 
-
-    // SWITCH FOR RENDERING
+    // Chosen type of development
     let item = props.type;
+
+    // Hook for estimated price
+    const [estimatedPrice, setEstimatedPrice] = useState(null);
+
+    function handleEstimatePrice() {
+        let startingPrice = 50;
+
+        switch(item) {
+            case 'DFS':
+                // FROM SCRATCH PRICING
+                startingPrice *= 4;
+                checkboxes.forEach((checkbox) => {
+                    if(checkbox.checked) {
+                        switch(checkbox.id) {
+                            case 'MultiplePages':
+                                startingPrice += 50;
+                                break;
+                            case 'MultipleUsers':
+                                startingPrice += 80;
+                                break;
+                            case 'RegisterLogin':
+                                startingPrice += 40;
+                                break;
+                            case 'Database':
+                                startingPrice += 100;
+                                break;
+                            case 'FilesStorage':
+                                startingPrice += 100;
+                                break;
+                            case 'ExternalAPI':
+                                startingPrice += 40;
+                                break;
+                            case 'PayemntOpt':
+                                startingPrice += 80;
+                                break;
+                            case 'Charts':
+                                startingPrice += 30;
+                                break;
+                            case 'Worksheet':
+                                startingPrice += 50;
+                                break;
+                            default:
+                                startingPrice += 30;
+                                break;
+                        }
+                    }
+                });
+                let maxPrice = startingPrice * 4;
+                setEstimatedPrice(`The price can vary from R$${startingPrice.toString()} to R$${maxPrice.toString()}`);
+
+        }
+    }
+
+    /* 
+            SWITCH CASE
+    */
     
     switch(item) {
         case 'DFS':                 // FROM SCRATCH
@@ -74,24 +141,26 @@ function FormItems(props) {
                         <input type="checkbox" name="internal_files" id="FilesStorage" value="internal_files"/>
                         <label htmlFor="FilesStorage">Internal files</label><br />
 
-                        <input type="checkbox" name="get_data_from_other_websites" id="externalAPI" value="get_data_from_other_websites"/>
-                        <label htmlFor="externalAPI">Get data from other websites</label><br />
+                        <input type="checkbox" name="get_data_from_other_websites" id="ExternalAPI" value="get_data_from_other_websites"/>
+                        <label htmlFor="ExternalAPI">Get data from other websites</label><br />
 
-                        <input type="checkbox" name="online_payment" id="paymentOpt" value="online_payment"/>
-                        <label htmlFor="paymentOpt">Online payment</label><br />
+                        <input type="checkbox" name="online_payment" id="PaymentOpt" value="online_payment"/>
+                        <label htmlFor="PaymentOpt">Online payment</label><br />
 
-                        <input type="checkbox" name="generate_charts" id="charts" value="generate_charts"/>
-                        <label htmlFor="charts">Generate charts</label><br />
+                        <input type="checkbox" name="generate_charts" id="Charts" value="generate_charts"/>
+                        <label htmlFor="Charts">Generate charts</label><br />
 
-                        <input type="checkbox" name="worksheet_formulas_or_macros" id="worksheet" value="worksheet_formulas_or_macros"/>
-                        <label htmlFor="worksheet">Worksheet formulas or macros</label><br />
+                        <input type="checkbox" name="worksheet_formulas_or_macros" id="Worksheet" value="worksheet_formulas_or_macros"/>
+                        <label htmlFor="Worksheet">Worksheet formulas or macros</label><br />
 
-                        <input type="checkbox" name="others" id="anotherOpt" value="others"/>
-                        <label htmlFor="anotherOpt">Others</label><br />
+                        <input type="checkbox" name="others" id="AnotherOpt" value="others"/>
+                        <label htmlFor="AnotherOpt">Others</label><br />
                     </div>
                     <label className="secondPartLabel"> Write a short description of your project </label><br />
                     <small id="characters">{charactersLeft} characters left</small>
                     <textarea id="description" onInput={countCharacters} />
+                    {estimatedPrice && <span className="text-danger">{estimatedPrice}</span>}<br />
+                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
                 </div>
             )
         case 'NFEP':                    // NEW FEATURES
@@ -104,7 +173,7 @@ function FormItems(props) {
                         
                         {newPageChecked && 
                             <div>
-                                <input type="number" id="qntNewPages" placeholder="1"/>
+                                <input type="number" id="qntNewPages" defaultValue="1"/>
                                 <label htmlFor="qntNewPages">: How many? </label> 
                             </div>
                         }
@@ -112,12 +181,17 @@ function FormItems(props) {
                         <input type="checkbox" name="new_user" id="newUser" value="new_user" />
                         <label htmlFor="newUser">New User and their permissions</label><br />
 
+                        <input type="checkbox" name="new_macro" id="newWorksheetMacro" value="new_macro" />
+                        <label htmlFor="newWorksheetMacro">Worksheet formula or macro</label><br />
+
                         <input type="checkbox" name="new_feature" id="newFeature" value="new_feature"/>
                         <label htmlFor="newFeature">Other new feature</label><br />
                     </div>
                     <label className="secondPartLabel"> Write a short description of the new feature(s) you would like to add </label><br />
                     <small id="characters">{charactersLeft} characters left</small>
                     <textarea id="description" onInput={countCharacters} />
+                    {estimatedPrice && <span className="text-danger">{estimatedPrice}</span>}<br />
+                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
                 </div>
             )
         case 'SEP':
@@ -126,6 +200,8 @@ function FormItems(props) {
                     <label className="secondPartLabel"> Write a short description of the support you need </label><br />
                     <small id="characters">{charactersLeft} characters left</small>
                     <textarea id="description" onInput={countCharacters} />
+                    {estimatedPrice && <span className="text-danger">{estimatedPrice}</span>}<br />
+                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
                 </div>
             )
         default:
