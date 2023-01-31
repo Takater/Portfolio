@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function FormItems(props) {
 
@@ -80,6 +79,9 @@ function FormItems(props) {
                         <input type="checkbox" name="online_payment" id="paymentOpt" value="online_payment"/>
                         <label htmlFor="paymentOpt">Online payment</label><br />
 
+                        <input type="checkbox" name="multiple_languages" id="MultipleLanguages" value="multiple_languages"/>
+                        <label htmlFor="MultipleLanguages">Multiple Languages</label><br />
+
                         <input type="checkbox" name="generate_charts" id="charts" value="generate_charts"/>
                         <label htmlFor="charts">Generate charts</label><br />
 
@@ -112,10 +114,13 @@ function FormItems(props) {
                         <input type="checkbox" name="new_user" id="newUser" value="new_user" />
                         <label htmlFor="newUser">New User and their permissions</label><br />
 
+                        <input type="checkbox" name="new_languages" id="NewLanguage" value="new_languages"/>
+                        <label htmlFor="NewLanguage">Multiple Languages</label><br />
+
                         <input type="checkbox" name="new_feature" id="newFeature" value="new_feature"/>
                         <label htmlFor="newFeature">Other new feature</label><br />
                     </div>
-                    <label className="secondPartLabel"> Write a short description of the new feature(s) you would like to add </label><br />
+                    <label className="secondPartLabel"> Write a short description of the new features you would like to add </label><br />
                     <small id="characters">{charactersLeft} characters left</small>
                     <textarea id="description" onInput={countCharacters} />
                 </div>

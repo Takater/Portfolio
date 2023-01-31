@@ -4,7 +4,7 @@ import FormItems from "./FormItems";
 
 function Budget() {
 
-    const [selectedType, setType] = useState('');
+    const [selectedType, setType] = useState('DFS');
 
     function handleTypeSelection(event) {
         setType(event.target.value)
@@ -38,8 +38,9 @@ function Budget() {
                     <option value="SEP">Support on existing project (no new features)</option>
                 </select>
 
+                {/* SPECIFICS */}
                 <FormItems 
-                    type={selectedType === '' ? 'DFS' : selectedType} 
+                    type={selectedType} 
                 />
                 <br />
                 <button type="button" className="btn btn-success btn-sm" id="submitBtn" onClick={submitForm}>Enviar</button>

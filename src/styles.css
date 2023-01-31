@@ -198,6 +198,7 @@ h3>em {
     margin-left: 5%;
     color: #0a0a0a;
     font-weight: 500;
+    cursor: pointer;
 } label[for="qntNewPages"]{margin-left: 0;}
 
 #qntNewPages {
