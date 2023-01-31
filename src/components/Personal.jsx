@@ -8,18 +8,24 @@ import automation from '../images/automation.png'
 import web3 from '../images/web3.png'
 import KDALIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
 
-function Personal () {
+function Personal (props) {
 
-    function Link (props) {
+    function Link (prop) {
         const LinkStyle = {
-            color: props.text === "In Progress" && '#0ff'
+            color: (prop.text === "In Progress" || prop.text === "Em Andamento") && '#0ff'
         }
         return (<a target="_blank" rel="noreferrer" style={LinkStyle} className="project-link" href={props.href}>{props.text}</a>);
     }
 
     return (
         <div id="personal-projects">
-            <h2><span>Projects</span></h2>
+            <h2><span>
+                {props.lang === 'en' ? 
+                    "Projects" :
+                    "Projetos"
+                }
+                </span>
+            </h2>
             <Paper
                 sx={{
                     p: 2,
@@ -32,10 +38,22 @@ function Personal () {
                 <Grid container spacing={4}>
                     <Project
                         image={imgHTML}
-                        title="Front-End Only"
+                        title={props.lang === 'en' ? 
+                            "Front-End Only" :
+                            "Apenas Front-End"
+                        }
                         items = {[
-                            <Link href="https://github.com/Takater/Portfolio" text="This Portfolio"/>,
-                            <Link href="https://github.com/Takater" text="In Progress"/>
+                            <Link href="https://github.com/Takater/Portfolio"
+                                text={props.lang === 'en' ? 
+                                    "This Portfolio" :
+                                    "Esse Portfólio"
+                                }
+                            />,
+                            <Link href="https://github.com/Takater" 
+                                text={props.lang === 'en' ? 
+                                "In Progress" :
+                                "Em Andamento"
+                            }/>
                         ]}
                     />
                     <Project

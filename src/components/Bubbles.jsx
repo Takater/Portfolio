@@ -1,24 +1,27 @@
 import React from 'react'
 import Bubble from './Bubble'
 
-function Bubbles () {
+function Bubbles (props) {
 
     return (
         <div style={{display: "flex", justifyContent: "center"}}>
             <Bubble
                 text="Curriculum Vitae"
                 top="67%"
-                left="20%"
+                left="15%"
+                lang={props.lang}
             />
             <Bubble
-                text="Projects Done"
-                top="77%"
+                text={props.lang === 'en' ? "Projects Done" : "Projetos Concluídos"}
+                top="80%"
                 left="45%"
+                lang={props.lang}
             />
             <Bubble
-                text="Project Budget"
+                text={props.lang === 'en' ? "Require Budget" : "Solicitar Orçamento"}
                 top="67%"
-                left="70%"
+                left="75%"
+                lang={props.lang}
             />
         </div>
     );

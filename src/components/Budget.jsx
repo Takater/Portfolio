@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import KDALIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
 import FormItems from "./FormItems";
 
-function Budget() {
+function Budget(props) {
 
     const [selectedType, setType] = useState('DFS');
 
@@ -11,7 +11,7 @@ function Budget() {
     }
 
     function submitForm() {
-        /**/
+        /**/alert(document.TEXT_NODE);
     }
 
     return (
@@ -40,7 +40,8 @@ function Budget() {
 
                 {/* SPECIFICS */}
                 <FormItems 
-                    type={selectedType} 
+                    type={selectedType}
+                    lang={props.lang} 
                 />
                 <br />
                 <button type="button" className="btn btn-success btn-sm" id="submitBtn" onClick={submitForm}>Enviar</button>

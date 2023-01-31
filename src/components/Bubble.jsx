@@ -25,7 +25,7 @@ function Bubble (props) {
         position: "absolute",
         top: "33%",
         left: props.text.length >= 15 ? (isHovered ? "25%" : "20%") : "28%",
-        textAlign: "center",
+        textAlign: "left",
         textShadow: "#000 1px 2px 1px",
         fontSize: "100%",
         fontWeight: "bold",
@@ -56,7 +56,7 @@ function Bubble (props) {
         position: "relative",
         filter: "saturate(5)",
         width: "100%",
-        transform: isHovered && "rotate(900deg)",
+        transform: isHovered && "rotate(45deg)",
         transitionDuration: isHovered && "5s",
         transitionDelay: isHovered && "now",
         animationTimingFunction: isHovered && "linear",
@@ -64,12 +64,25 @@ function Bubble (props) {
     }
 
     function goTo (e) {
-        if (e.target.getAttribute('name') !== null) {
-            window.location.pathname = e.target.getAttribute('name');
+        if (e.target.name !== '' && e.target.name !== undefined) {
+            
+            // Language Configuration
+            if(props.lang === 'en') {
+                window.location.pathname = e.target.name;
+            } else {
+                let link = e.target.name === 'solicitar-orçamento' ? 'require-budget' : 'projects-done';
+                window.location.pathname = link;
+            }
         } else {
-            if(e.target.getAttribute("id") === "curriculum-vitae" || e.target.getAttribute("alt").split(" - ")[1] === "curriculum-vitae") {
-                const link = require('../files/CV-GuilhermeMoret2022FS.pdf')
+
+            // Curriculum File Based on language           Click on border 
+            if((e.target.id === "curriculum-vitae") || (e.target.id === '')) {
+                const link = require(props.lang === 'en' ? '../files/CV-GuilhermeMoret2022FS-Eng.pdf' : '../files/CV-GuilhermeMoret2022FS.pdf');
                 window.open(link, '_blank');
+            } else {
+                // Ternary to trigger hook in all languages
+                let link = e.target.id === 'solicitar-orçamento' ? 'require-budget' : 'projects-done';
+                window.location.pathname = link;
             }
         }
     }
@@ -81,8 +94,16 @@ function Bubble (props) {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             >
-            <img name={nome !== "curriculum-vitae" && nome} src={blueborder} style={borderImage} alt={"Blue Border - " + nome}/>
-            <div id={nome} style={isMobile || isTablet ? mobileText : bubbleText} name={nome !== "curriculum-vitae" && nome}>{props.text.split(" ").length > 1 ? props.text.split(" ")[0] : props.text}{props.text.split(" ").length > 1  && <br />}{props.text.split(" ").length > 1 && props.text.split(" ")[1]}</div>
+            
+            <img name={nome !== "curriculum-vitae" && nome} src={blueborder} style={borderImage} alt={`"Blue Border - ${nome}"`}/>
+
+            <div 
+            id={nome} 
+            style={isMobile || isTablet ? mobileText : bubbleText} 
+            name={nome !== "curriculum-vitae" && nome}
+            >
+                {props.text}
+            </div>
         </div>
     );
 }

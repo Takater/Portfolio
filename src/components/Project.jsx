@@ -15,16 +15,8 @@ const Img = styled('img')({
 
 function Project (props) {
 
-    function ListSelect() {
-        return (
-            <List
-                items={props.items}
-            />
-        )
-    }
-
     return (
-        <Tooltip title={<ListSelect />} placement="bottom">
+        <Tooltip title={<List items={props.items} />} placement="bottom">
             <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
                 <Img alt="complex" className="projectIcon" src={props.image} />

@@ -27,13 +27,14 @@ function FormItems(props) {
                 ADDS FUNCTION TO CURRENT LABEL
             THE SECOND PARAMETER IS THE OBJECT TO TRIGGER THE UPDATE
         */
-        setCheckboxes(document.querySelectorAll('input[type="checkbox"]'));
-        checkboxes.length > 0 && checkboxes.forEach((checkbox) => {
-            checkbox.addEventListener('click', handleCheckboxClick);
-            const label = document.querySelector(`label[for="${checkbox.id}"]`);
-            label && label.addEventListener('click', handleCheckboxClick);
-        });
-    }, [checkboxes]);
+            setCheckboxes(document.querySelectorAll('input[type="checkbox"]'));
+
+            checkboxes.forEach((checkbox) => {
+              checkbox.addEventListener('click', handleCheckboxClick);
+              const label = document.querySelector(`label[for="${checkbox.id}"]`);
+              label && label.addEventListener('click', handleCheckboxClick);
+            });
+          }, [checkboxes]);
 
     // Max length for description box
     const textMaxLength = 200;
@@ -45,10 +46,10 @@ function FormItems(props) {
         let text = event.target.value;
         setCharactersLeft(textMaxLength - text.length);
         if(text.length > textMaxLength) {
-            document.getElementById("characters").style.color = "red";
+            document.querySelector("#characters").style.color = "red";
             document.querySelector("#description").style.borderColor = "red";
         } else {
-            document.getElementById("characters").style.color = "#050a30";
+            document.querySelector("#characters").style.color = "#050a30";
             document.querySelector("#description").style.borderColor = "";
         }
     }
@@ -59,6 +60,13 @@ function FormItems(props) {
         const newPage = event.target;
         setnewPageChecked(newPage.checked);
     }
+    
+    // Hook for new language choice
+    const [newLanguageChecked, setNewLanguageChecked] = useState(false);
+    function addNewLanguage(event) {
+        const newLang = event.target;
+        setNewLanguageChecked(newLang.checked);
+    }
 
     // Chosen type of development
     let item = props.type;
@@ -68,6 +76,7 @@ function FormItems(props) {
 
     function handleEstimatePrice() {
         let startingPrice = 50;
+        let maxPrice = 0;
 
         switch(item) {
             case 'DFS':
@@ -77,7 +86,7 @@ function FormItems(props) {
                     if(checkbox.checked) {
                         switch(checkbox.id) {
                             case 'MultiplePages':
-                                startingPrice += 50;
+                                startingPrice += 70;
                                 break;
                             case 'MultipleUsers':
                                 startingPrice += 80;
@@ -103,16 +112,61 @@ function FormItems(props) {
                             case 'Worksheet':
                                 startingPrice += 50;
                                 break;
+                            case "Arduino":
+                                startingPrice += 200;
+                                break;
+                            case "TasksAutomation":
+                                startingPrice += 100;
+                                break;
                             default:
                                 startingPrice += 30;
                                 break;
                         }
                     }
                 });
-                let maxPrice = startingPrice * 4;
-                setEstimatedPrice(`The price can vary from R$${startingPrice.toString()} to R$${maxPrice.toString()}`);
-
+                maxPrice = startingPrice * 5;
+                break;
+            case 'NFEP':
+                // NEW FEATURES PRICING
+                startingPrice *= 2;
+                checkboxes.forEach((checkbox) => {
+                    if(checkbox.checked) {
+                        switch(checkbox.id) {
+                            case 'newPage':
+                                let qntNewPages = document.querySelector("#qntNewPages").value;
+                                startingPrice += (50 * qntNewPages);
+                                break;
+                            case 'newUser':
+                                startingPrice += 30;
+                                break;
+                            case 'newLanguage':
+                                let qntPages = document.querySelector("#qntPages").value;
+                                startingPrice += (80 * qntPages);
+                                break;
+                            case 'newMacro':
+                                startingPrice += 40;
+                                break;
+                            case 'processAutomation':
+                                startingPrice += 100;
+                                break;
+                            default:
+                                startingPrice += 50;
+                                break;
+                        }
+                    }
+                });
+                maxPrice = startingPrice * 4;
+                break;
+            case 'SEP':
+                // SUPPORT
+                startingPrice *= 2;
+                maxPrice = startingPrice * 3;
+                break;
+            default:
+                break;
         }
+
+        setEstimatedPrice(`The price may vary from R$${startingPrice.toString()} to R$${maxPrice.toString()}`);
     }
 
     /* 
@@ -146,11 +200,20 @@ function FormItems(props) {
                         <input type="checkbox" name="online_payment" id="PaymentOpt" value="online_payment"/>
                         <label htmlFor="PaymentOpt">Online payment</label><br />
 
+                        <input type="checkbox" name="multiple_languages" id="MultiLang" value="multiple_languages"/>
+                        <label htmlFor="MultiLang">Multiple Languages</label><br />
+
                         <input type="checkbox" name="generate_charts" id="Charts" value="generate_charts"/>
                         <label htmlFor="Charts">Generate charts</label><br />
 
                         <input type="checkbox" name="worksheet_formulas_or_macros" id="Worksheet" value="worksheet_formulas_or_macros"/>
-                        <label htmlFor="Worksheet">Worksheet formulas or macros</label><br />
+                        <label htmlFor="Worksheet">Worksheet with formulas or macros</label><br />
+
+                        <input type="checkbox" name="arduino_automation" id="Arduino" value="arduino_automation"/>
+                        <label htmlFor="Arduino">Arduino Automation</label><br />
+
+                        <input type="checkbox" name="tasks_automation" id="TasksAutomation" value="tasks_automation"/>
+                        <label htmlFor="TasksAutomation">Tasks Automation</label><br />
 
                         <input type="checkbox" name="others" id="AnotherOpt" value="others"/>
                         <label htmlFor="AnotherOpt">Others</label><br />
@@ -158,7 +221,7 @@ function FormItems(props) {
                     <label className="secondPartLabel"> Write a short description of your project </label><br />
                     <small id="characters">{charactersLeft} characters left</small>
                     <textarea id="description" onInput={countCharacters} />
-                    {estimatedPrice && <span className="text-danger">{estimatedPrice}</span>}<br />
+                    {estimatedPrice && <span className="text-warning">{estimatedPrice}</span>}<br />
                     <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
                 </div>
             )
@@ -180,8 +243,21 @@ function FormItems(props) {
                         <input type="checkbox" name="new_user" id="newUser" value="new_user" />
                         <label htmlFor="newUser">New User and their permissions</label><br />
 
-                        <input type="checkbox" name="new_languages" id="NewLanguage" value="new_languages"/>
-                        <label htmlFor="NewLanguage">Multiple Languages</label><br />
+                        <input type="checkbox" name="new_language" id="newLanguage" value="new_language" onChange={addNewLanguage}/>
+                        <label htmlFor="newLanguage">New Language</label><br />
+
+                        {newLanguageChecked &&
+                            <div>
+                                <input type="number" id="qntPages" defaultValue="1" />
+                                <label htmlFor="qntPages">: How many pages?</label>
+                            </div>                    
+                        }
+
+                        <input type="checkbox" name="new_macro" id="newMacro" value="new_macro" />
+                        <label htmlFor="newMacro">New formula or macro for Worksheet</label><br />
+
+                        <input type="checkbox" name="process_automation" id="processAutomation" value="process_automation"/>
+                        <label htmlFor="processAutomation">Process Automation</label><br />
 
                         <input type="checkbox" name="new_feature" id="newFeature" value="new_feature"/>
                         <label htmlFor="newFeature">Other new feature</label><br />
@@ -189,7 +265,7 @@ function FormItems(props) {
                     <label className="secondPartLabel"> Write a short description of the new features you would like to add </label><br />
                     <small id="characters">{charactersLeft} characters left</small>
                     <textarea id="description" onInput={countCharacters} />
-                    {estimatedPrice && <span className="text-danger">{estimatedPrice}</span>}<br />
+                    {estimatedPrice && <span className="text-warning">{estimatedPrice}</span>}<br />
                     <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
                 </div>
             )
@@ -199,7 +275,7 @@ function FormItems(props) {
                     <label className="secondPartLabel"> Write a short description of the support you need </label><br />
                     <small id="characters">{charactersLeft} characters left</small>
                     <textarea id="description" onInput={countCharacters} />
-                    {estimatedPrice && <span className="text-danger">{estimatedPrice}</span>}<br />
+                    {estimatedPrice && <span className="text-warning">{estimatedPrice}</span>}<br />
                     <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
                 </div>
             )
