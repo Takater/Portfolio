@@ -13,7 +13,7 @@ function Bubble (props) {
 
     const bubbleStyle = {
         position: "absolute",
-        width: isHovered ? "11%" : "10%",
+        width: isHovered ? "10.5%" : "10%",
         top: props.top,
         left: props.left,
         cursor: "pointer",
@@ -42,9 +42,9 @@ function Bubble (props) {
 
     const mobileText = {
         position: "absolute",
-        fontSize: isMobile ? "60%" : "100%",
+        fontSize: isMobile ? "70%" : "100%",
         top: "35%",
-        left: "32%",
+        left: props.text.length > 15 ? "27%" : "32%",
         textAlign: "left",
         textShadow: "#005500 2px 1px 2px",
         fontWeight: "bold",
@@ -56,8 +56,8 @@ function Bubble (props) {
         position: "relative",
         filter: "saturate(5)",
         width: "100%",
-        transform: isHovered && "rotate(45deg)",
-        transitionDuration: isHovered && "5s",
+        transform: isHovered && "rotate(36000deg)",
+        transitionDuration: isHovered && "100s",
         transitionDelay: isHovered && "now",
         animationTimingFunction: isHovered && "linear",
         animationIterationCount: isHovered && "infinite"
@@ -70,7 +70,7 @@ function Bubble (props) {
             if(props.lang === 'en') {
                 window.location.pathname = e.target.name;
             } else {
-                let link = e.target.name === 'solicitar-orçamento' ? 'require-budget' : 'projects-done';
+                let link = e.target.name === 'solicitar-orçamento' ? 'request-budget' : 'projects-done';
                 window.location.pathname = link;
             }
         } else {
@@ -81,7 +81,7 @@ function Bubble (props) {
                 window.open(link, '_blank');
             } else {
                 // Ternary to trigger hook in all languages
-                let link = e.target.id === 'solicitar-orçamento' ? 'require-budget' : 'projects-done';
+                let link = e.target.id === 'solicitar-orçamento' ? 'request-budget' : 'projects-done';
                 window.location.pathname = link;
             }
         }
@@ -95,14 +95,14 @@ function Bubble (props) {
             onMouseLeave={() => setIsHovered(false)}
             >
             
-            <img name={nome !== "curriculum-vitae" && nome} src={blueborder} style={borderImage} alt={`"Blue Border - ${nome}"`}/>
+            <img name={nome !== "curriculum-vitae" ? nome : undefined} src={blueborder} style={borderImage} alt={`"Blue Border - ${nome}"`}/>
 
             <div 
             id={nome} 
             style={isMobile || isTablet ? mobileText : bubbleText} 
-            name={nome !== "curriculum-vitae" && nome}
+            name={nome !== "curriculum-vitae" ? nome : undefined}
             >
-                {props.text}
+                {props.text.split(" ")[0]}<br />{props.text.split(" ")[1]}
             </div>
         </div>
     );

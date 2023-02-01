@@ -29,7 +29,7 @@ function FormItems(props) {
         */
             setCheckboxes(document.querySelectorAll('input[type="checkbox"]'));
 
-            checkboxes.forEach((checkbox) => {
+            checkboxes && checkboxes.forEach((checkbox) => {
               checkbox.addEventListener('click', handleCheckboxClick);
               const label = document.querySelector(`label[for="${checkbox.id}"]`);
               label && label.addEventListener('click', handleCheckboxClick);
@@ -74,6 +74,20 @@ function FormItems(props) {
     // Hook for estimated price
     const [estimatedPrice, setEstimatedPrice] = useState(null);
 
+    // Hooks for chosen quantities
+    const [qntNewPage, setQntNewPage] = useState(1);
+    const [qntPage, setQntPage] = useState(1);
+
+    function handleQntChange(event) {
+        let target = event.target
+
+        // Change appropriate hook
+        target && target.id === 'qntNewPages' ?
+            setQntNewPage(target.value) :
+        target.id === 'qntPages' &&
+            setQntPage(target.value)
+    }
+
     function handleEstimatePrice() {
         let startingPrice = 50;
         let maxPrice = 0;
@@ -84,44 +98,8 @@ function FormItems(props) {
                 startingPrice *= 4;
                 checkboxes.forEach((checkbox) => {
                     if(checkbox.checked) {
-                        switch(checkbox.id) {
-                            case 'MultiplePages':
-                                startingPrice += 70;
-                                break;
-                            case 'MultipleUsers':
-                                startingPrice += 80;
-                                break;
-                            case 'RegisterLogin':
-                                startingPrice += 40;
-                                break;
-                            case 'Database':
-                                startingPrice += 100;
-                                break;
-                            case 'FilesStorage':
-                                startingPrice += 100;
-                                break;
-                            case 'ExternalAPI':
-                                startingPrice += 40;
-                                break;
-                            case 'PayemntOpt':
-                                startingPrice += 80;
-                                break;
-                            case 'Charts':
-                                startingPrice += 30;
-                                break;
-                            case 'Worksheet':
-                                startingPrice += 50;
-                                break;
-                            case "Arduino":
-                                startingPrice += 200;
-                                break;
-                            case "TasksAutomation":
-                                startingPrice += 100;
-                                break;
-                            default:
-                                startingPrice += 30;
-                                break;
-                        }
+                        // Add value if it's a number or 0 otherwise
+                        startingPrice += !isNaN(checkbox.value) ? parseInt(checkbox.value) : 0;   
                     }
                 });
                 maxPrice = startingPrice * 5;
@@ -131,27 +109,13 @@ function FormItems(props) {
                 startingPrice *= 2;
                 checkboxes.forEach((checkbox) => {
                     if(checkbox.checked) {
-                        switch(checkbox.id) {
-                            case 'newPage':
-                                let qntNewPages = document.querySelector("#qntNewPages").value;
-                                startingPrice += (50 * qntNewPages);
-                                break;
-                            case 'newUser':
-                                startingPrice += 30;
-                                break;
-                            case 'newLanguage':
-                                let qntPages = document.querySelector("#qntPages").value;
-                                startingPrice += (80 * qntPages);
-                                break;
-                            case 'newMacro':
-                                startingPrice += 40;
-                                break;
-                            case 'processAutomation':
-                                startingPrice += 100;
-                                break;
-                            default:
-                                startingPrice += 50;
-                                break;
+                        // Add up prices and multiply by the appropriate quantity for the appropriate choices, when necessary
+                        if (checkbox.id === 'newPage' || checkbox.id === 'newLanguage') {
+                            checkbox.id === 'newPage' ?
+                                startingPrice += parseInt(checkbox.value * qntNewPage) :
+                                startingPrice += parseInt(checkbox.value * qntPage)
+                        } else {
+                            startingPrice += parseInt(checkbox.value);
                         }
                     }
                 });
@@ -160,13 +124,17 @@ function FormItems(props) {
             case 'SEP':
                 // SUPPORT
                 startingPrice *= 2;
-                maxPrice = startingPrice * 3;
+                maxPrice = startingPrice * 3.5;
                 break;
             default:
                 break;
         }
 
-        setEstimatedPrice(`The price may vary from R$${startingPrice.toString()} to R$${maxPrice.toString()}`);
+        setEstimatedPrice(props.lang === 'en' ?
+            `The price may vary from R$${startingPrice.toString()} to R$${maxPrice.toString()}` :
+            `O preço pode variar de R$${startingPrice.toString()} a R$${maxPrice.toString()}` 
+
+        );
     }
 
     /* 
@@ -177,106 +145,202 @@ function FormItems(props) {
         case 'DFS':                 // FROM SCRATCH
             return (
                 <div id="formSecondPart">
-                    <label className="secondPartLabel">Select all the features that your project might include </label><br />
-                    <div className="secondPart-checkboxes"                         >
-                        <input type="checkbox" name="multiple_pages" id="MultiplePages" value="multiple_pages"/>
-                        <label htmlFor="MultiplePages">Multiple pages</label><br />
+                    <label className="secondPartLabel">{props.lang === 'en' ?
+                        "Select all the features that your project might include" :
+                        "Selecione todos os recursos que seu projeto pode incluir"
+                    }</label><br />
+                    <div className="secondPart-checkboxes">
+                        <input type="checkbox" name="multiple_pages" id="MultiplePages" value="70"/>
+                        <label htmlFor="MultiplePages">{props.lang === 'en' ?
+                            "Multiple pages" :
+                            "Múltiplas Páginas"
+                        }</label><br />
 
-                        <input type="checkbox" name="various_users" id="MultipleUsers" value="various_users"/>
-                        <label htmlFor="MultipleUsers">Various users</label><br />
+                        <input type="checkbox" name="various_users" id="MultipleUsers" value="80"/>
+                        <label htmlFor="MultipleUsers">{props.lang === 'en' ?
+                            "Various users" :
+                            "Vários usuários"
+                        }</label><br />
 
-                        <input type="checkbox" name="register_and_login" id="RegisterLogin" value="register_and_login"/>
-                        <label htmlFor="RegisterLogin">Register and Login</label><br />
+                        <input type="checkbox" name="register_and_login" id="RegisterLogin" value="40"/>
+                        <label htmlFor="RegisterLogin">{props.lang === 'en' ?
+                            "Register and Login" :
+                            "Cadastro e Login"
+                        }</label><br />
 
-                        <input type="checkbox" name="record_data" id="Database" value="record_data"/>
-                        <label htmlFor="Database">Record data</label><br />
+                        <input type="checkbox" name="record_data" id="Database" value="100"/>
+                        <label htmlFor="Database">{props.lang === 'en' ?
+                            "Record data" :
+                            "Gravar dados"
+                        }</label><br />
 
-                        <input type="checkbox" name="internal_files" id="FilesStorage" value="internal_files"/>
-                        <label htmlFor="FilesStorage">Internal files</label><br />
+                        <input type="checkbox" name="internal_files" id="FilesStorage" value="100"/>
+                        <label htmlFor="FilesStorage">{props.lang === 'en' ?
+                            "Internal files" :
+                            "Arquivos internos"
+                        }</label><br />
 
-                        <input type="checkbox" name="get_data_from_other_websites" id="ExternalAPI" value="get_data_from_other_websites"/>
-                        <label htmlFor="ExternalAPI">Get data from other websites</label><br />
+                        <input type="checkbox" name="get_data_from_other_websites" id="ExternalAPI" value="40"/>
+                        <label htmlFor="ExternalAPI">{props.lang === 'en' ?
+                            "Get data from other websites" :
+                            "Pegar dados de outros sites"
+                        }</label><br />
 
-                        <input type="checkbox" name="online_payment" id="PaymentOpt" value="online_payment"/>
-                        <label htmlFor="PaymentOpt">Online payment</label><br />
+                        <input type="checkbox" name="online_payment" id="PaymentOpt" value="80"/>
+                        <label htmlFor="PaymentOpt">{props.lang === 'en' ?
+                            "Online payment" :
+                            "Pagamento online"
+                        }</label><br />
 
-                        <input type="checkbox" name="multiple_languages" id="MultiLang" value="multiple_languages"/>
-                        <label htmlFor="MultiLang">Multiple Languages</label><br />
+                        <input type="checkbox" name="multiple_languages" id="MultiLang" value="30"/>
+                        <label htmlFor="MultiLang">{props.lang === 'en' ?
+                            "Multiple languages" :
+                            "Múltiplos idiomas"
+                        }</label><br />
 
-                        <input type="checkbox" name="generate_charts" id="Charts" value="generate_charts"/>
-                        <label htmlFor="Charts">Generate charts</label><br />
+                        <input type="checkbox" name="generate_charts" id="Charts" value="30"/>
+                        <label htmlFor="Charts">{props.lang === 'en' ?
+                            "Generate charts" :
+                            "Gerar gráficos"
+                        }</label><br />
 
-                        <input type="checkbox" name="worksheet_formulas_or_macros" id="Worksheet" value="worksheet_formulas_or_macros"/>
-                        <label htmlFor="Worksheet">Worksheet with formulas or macros</label><br />
+                        <input type="checkbox" name="worksheet_formulas_or_macros" id="Worksheet" value="50"/>
+                        <label htmlFor="Worksheet">{props.lang === 'en' ?
+                            "Worksheet with formulas or macros" :
+                            "Planilha com fórmulas ou macros"
+                        }</label><br />
 
-                        <input type="checkbox" name="arduino_automation" id="Arduino" value="arduino_automation"/>
-                        <label htmlFor="Arduino">Arduino Automation</label><br />
+                        <input type="checkbox" name="arduino_automation" id="Arduino" value="200"/>
+                        <label htmlFor="Arduino">{props.lang === 'en' ?
+                            "Arduino Automation" : 
+                            "Automação Arduino" 
+                        }</label><br />
 
-                        <input type="checkbox" name="tasks_automation" id="TasksAutomation" value="tasks_automation"/>
-                        <label htmlFor="TasksAutomation">Tasks Automation</label><br />
+                        <input type="checkbox" name="tasks_automation" id="TasksAutomation" value="100"/>
+                        <label htmlFor="TasksAutomation">{props.lang === 'en' ?
+                            "Tasks Automations" : 
+                            "Automatização de Tarefas" 
+                        }</label><br />
 
-                        <input type="checkbox" name="others" id="AnotherOpt" value="others"/>
-                        <label htmlFor="AnotherOpt">Others</label><br />
+                        <input type="checkbox" name="others" id="AnotherOpt" value="30"/>
+                        <label htmlFor="AnotherOpt">{props.lang === 'en' ?
+                            "Others" : 
+                            "Outros" 
+                        }</label><br />
                     </div>
-                    <label className="secondPartLabel"> Write a short description of your project </label><br />
-                    <small id="characters">{charactersLeft} characters left</small>
+                    <label className="secondPartLabel"> {props.lang === 'en' ?
+                        "Write a short description of your project" : 
+                        "Escreva uma pequena descrição do seu projeto" 
+                    }</label><br />
+                    <small id="characters">{props.lang === 'en' ?
+                            `${charactersLeft} characters left` : 
+                            `${charactersLeft} caracteres sobrando` 
+                            }</small>
                     <textarea id="description" onInput={countCharacters} />
                     {estimatedPrice && <span className="text-warning">{estimatedPrice}</span>}<br />
-                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
+                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>{props.lang === 'en' ? 
+                        "Get price range" :
+                        "Ver faixa de preço"
+                    }</button>
                 </div>
             )
         case 'NFEP':                    // NEW FEATURES
             return (
                 <div id="formSecondPart">
-                    <label className="secondPartLabel">Select options that best fit the new features that you would like to add to your project</label><br />
+                    <label className="secondPartLabel">{props.lang === 'en' ? 
+                        "Select options that best fit the new features that you would like to add to your project" :
+                        "Selecione as opções que melhor se encaixam nos recursos que você gostaria de adicionar ao seu projeto" 
+                    }</label><br />
                     <div className="secondPart-checkboxes"                         >
-                        <input type="checkbox" name="new_page" id="newPage" value="new_page" onChange={addNewPage}/>
-                        <label htmlFor="newPage">New Page</label><br />
+                        <input type="checkbox" name="new_page" id="newPage" value="50" onChange={addNewPage}/>
+                        <label htmlFor="newPage">{props.lang === 'en' ? 
+                            "New page" :
+                            "Nova página" 
+                        }</label><br />
                         
                         {newPageChecked && 
                             <div>
-                                <input type="number" id="qntNewPages" defaultValue="1"/>
-                                <label htmlFor="qntNewPages">: How many? </label> 
+                                <input type="number" id="qntNewPages" defaultValue="1" onChange={handleQntChange}/>
+                                <label htmlFor="qntNewPages">: {props.lang === 'en' ? 
+                                    "How many?" :
+                                    "Quantas?" 
+                                }</label> 
                             </div>
                         }
 
-                        <input type="checkbox" name="new_user" id="newUser" value="new_user" />
-                        <label htmlFor="newUser">New User and their permissions</label><br />
+                        <input type="checkbox" name="new_user" id="newUser" value="30" />
+                        <label htmlFor="newUser">{props.lang === 'en' ? 
+                            "New User and their permissions" :
+                            "Novo Usuário e suas permissões" 
+                        }</label><br />
 
-                        <input type="checkbox" name="new_language" id="newLanguage" value="new_language" onChange={addNewLanguage}/>
-                        <label htmlFor="newLanguage">New Language</label><br />
+                        <input type="checkbox" name="new_language" id="newLanguage" value="80" onChange={addNewLanguage}/>
+                        <label htmlFor="newLanguage">{props.lang === 'en' ? 
+                            "New language" :
+                            "Novo idioma" 
+                        }</label><br />
 
                         {newLanguageChecked &&
                             <div>
-                                <input type="number" id="qntPages" defaultValue="1" />
-                                <label htmlFor="qntPages">: How many pages?</label>
+                                <input type="number" id="qntPages" defaultValue="1" onChange={handleQntChange}/>
+                                <label htmlFor="qntPages">: {props.lang === 'en' ? 
+                                    "How many pages?" :
+                                    "Quantas páginas?" 
+                                }</label>
                             </div>                    
                         }
 
-                        <input type="checkbox" name="new_macro" id="newMacro" value="new_macro" />
-                        <label htmlFor="newMacro">New formula or macro for Worksheet</label><br />
+                        <input type="checkbox" name="new_macro" id="newMacro" value="40" />
+                        <label htmlFor="newMacro">{props.lang === 'en' ? 
+                            "New formula or macro for Worksheet" :
+                            "Nova fórmula ou macro para Planilha" 
+                        }</label><br />
 
-                        <input type="checkbox" name="process_automation" id="processAutomation" value="process_automation"/>
-                        <label htmlFor="processAutomation">Process Automation</label><br />
+                        <input type="checkbox" name="process_automation" id="processAutomation" value="100"/>
+                        <label htmlFor="processAutomation">{props.lang === 'en' ? 
+                            "Process automation" :
+                            "Automatização de processo" 
+                        }</label><br />
 
-                        <input type="checkbox" name="new_feature" id="newFeature" value="new_feature"/>
-                        <label htmlFor="newFeature">Other new feature</label><br />
+                        <input type="checkbox" name="new_feature" id="newFeature" value="50"/>
+                        <label htmlFor="newFeature">{props.lang === 'en' ? 
+                            "Other new features" :
+                            "Outros novos recursos" 
+                        }</label><br />
                     </div>
-                    <label className="secondPartLabel"> Write a short description of the new features you would like to add </label><br />
-                    <small id="characters">{charactersLeft} characters left</small>
+                    <label className="secondPartLabel"> {props.lang === 'en' ? 
+                        "Write a short description of the new features you would like to add " :
+                        "Escreva uma pequena descrição dos novos recursos que gostaria de adicionar " 
+                    }</label><br />
+                    <small id="characters">{props.lang === 'en' ?
+                            `${charactersLeft} characters left` : 
+                            `${charactersLeft} caracteres sobrando` 
+                            }</small>
                     <textarea id="description" onInput={countCharacters} />
                     {estimatedPrice && <span className="text-warning">{estimatedPrice}</span>}<br />
-                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
+                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>{props.lang === 'en' ? 
+                        "Get price range" :
+                        "Ver faixa de preço"
+                    }</button>
                 </div>
             )
         case 'SEP':
             return (
                 <div id="formSecondPart">
-                    <label className="secondPartLabel"> Write a short description of the support you need </label><br />
-                    <small id="characters">{charactersLeft} characters left</small>
+                    <label className="secondPartLabel"> {props.lang === 'en' ? 
+                        "Write a short description of the support you need " :
+                        "Escreva uma pequena descrição do suporte que precisa "
+                    }</label><br />
+                    <small id="characters">{props.lang === 'en' ?
+                            `${charactersLeft} characters left` : 
+                            `${charactersLeft} caracteres sobrando` 
+                            }</small>
                     <textarea id="description" onInput={countCharacters} />
                     {estimatedPrice && <span className="text-warning">{estimatedPrice}</span>}<br />
-                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>Get price range</button>
+                    <button type="button" className="btn btn-warning btn-sm" onClick={handleEstimatePrice}>{props.lang === 'en' ? 
+                        "Get price range" :
+                        "Ver faixa de preço"
+                    }</button>
                 </div>
             )
         default:

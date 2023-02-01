@@ -18,7 +18,7 @@ function Bubbles (props) {
                 lang={props.lang}
             />
             <Bubble
-                text={props.lang === 'en' ? "Require Budget" : "Solicitar Orçamento"}
+                text={props.lang === 'en' ? "Request Budget" : "Solicitar Orçamento"}
                 top="67%"
                 left="75%"
                 lang={props.lang}

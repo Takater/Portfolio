@@ -159,8 +159,25 @@ h3>em {
 
 /* PROJECTS */
 
+#projects-bubbles {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 2%;
+    text-align: center;
+    width: 55.05%;
+    background: rgba(237, 237, 255, 0.5);
+    border-radius: 10%;
+}
+
+.MuiGrid-container {
+    margin-left: 0 !important;
+    justify-content: center;
+}
+
 .projectIcon {
     height: 100%;
+    width: 100%;
     border-radius: 50%;
 }
 
@@ -171,14 +188,31 @@ h3>em {
 }
 
 .project-link:hover{
-    color: #aff;
+    color: #10bcd1;
 }
 
 .MuiTypography-subtitle1 {
     color:#000;
     font-weight: 600 !important;
-    text-shadow: #d2b29c 2px 2px;
+    text-shadow: #10bcd1 1px 1px;
 }
+
+@media screen and (max-width: 600px) {
+    .MuiTypography-subtitle1 {
+        font-size: 0.9rem !important;
+    }
+}
+
+@media screen and (min-width: 712px) and (max-width: 1024px) {
+    .MuiButtonBase-root {
+        margin-bottom: 20px !important;
+        margin-left: 20px !important;
+    }
+    .MuiTypography-subtitle1 {
+        font-size: 0.8rem !important;
+    }
+}
+
 
 /* BUDGET */
 #budget {

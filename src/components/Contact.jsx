@@ -10,7 +10,7 @@ function Contact (props) {
     
     function PhoneOrWhats () {
         return (<List items={[
-            <a className="contactLink" href="tel:5569948282019"><button className="btn btn-outline-primary text-dark fw-bold">
+            <a className="contactLink" rel="noreferrer" target="_blank" href="tel:5569948282019"><button className="btn btn-outline-primary text-dark fw-bold">
                     {props.lang === 'en' ?
                         "Phone" : 
                         "Telefone"
@@ -21,7 +21,7 @@ function Contact (props) {
                     "Or" : "Ou"
                 }
             </span>,
-            <a className="contactLink" 
+            <a className="contactLink" rel="noreferrer" target="_blank"
                 href={props.lang === 'en' ? 
                     "https://api.whatsapp.com/send?phone=5569984282019&text=Hello,%20Guilherme!I%20came%20from%20your%20Portfolio.%20Nice%20to%20meet%20you!" :
                     "https://api.whatsapp.com/send?phone=5569984282019&text=Olá,%20Guilherme!%20Eu%20vim%20do%20seu%20Portfólio.%20Prazer%20em%20te%20conhecer!"
@@ -40,7 +40,7 @@ function Contact (props) {
                     }
                 </span>
             </h2>
-            <a className="contactIcon" href="mailto:guilherme.moret.ps@gmail.com">
+            <a rel="noreferrer" target="_blank" className="contactIcon" href="mailto:guilherme.moret.ps@gmail.com">
                 <EmailIcon
                     fontSize="large"
                 />
@@ -51,12 +51,12 @@ function Contact (props) {
                     fontSize="large"
                 />
             </Tooltip>
-            <a className="contactIcon" href="https://www.linkedin.com/in/guilherme-moret-03ba97219/">
+            <a className="contactIcon" rel="noreferrer" target="_blank" href="https://www.linkedin.com/in/guilherme-moret-03ba97219/">
                 <LinkedInIcon
                     fontSize="large"
                 />
             </a>
-            <a className="contactIcon" href="https://github.com/Takater">
+            <a className="contactIcon" rel="noreferrer" target="_blank" href="https://github.com/Takater">
                 <GitHubIcon
                     fontSize="large"
                 />

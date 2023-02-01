@@ -3,11 +3,21 @@ import Header from './components/Header'
 import Contact from './components/Contact'
 import Personal from './components/Personal';
 import Budget from './components/Budget';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [chosenLanguage, setChosenLanguage] = useState('en');
+  const [chosenLanguage, setChosenLanguage] = useState(
+      localStorage.getItem('chosenLanguage') || ''
+    );
+
+  useEffect(() => {
+    localStorage.setItem('chosenLanguage', chosenLanguage);
+  }, [chosenLanguage]);
+
+  function handleLanguageChange(language) {
+    setChosenLanguage(language);
+  }
 
   const brazil = '🇧🇷';
   const usa = '🇺🇸';
@@ -15,8 +25,8 @@ function App() {
   function SetLanguage() {
     return(
     <div className='country-flags'>
-      <span role='img' aria-label='brazil' onClick={() => setChosenLanguage('pt')}>{brazil}</span>
-      <span role='img' aria-label='usa' onClick={() => setChosenLanguage('en')}>{usa}</span>
+      <span role='img' aria-label='brazil' onClick={() => handleLanguageChange('pt')}>{brazil}</span>
+      <span role='img' aria-label='usa' onClick={() => handleLanguageChange('en')}>{usa}</span>
     </div>
     );
   }
@@ -29,7 +39,7 @@ function App() {
         <SetLanguage />
         {page === "/" && <Header lang={chosenLanguage}/> }
         {page === "/projects-done" && <Personal lang={chosenLanguage}/>}
-        {page === "/require-budget" && <Budget lang={chosenLanguage}/>}
+        {page === "/request-budget" && <Budget lang={chosenLanguage}/>}
       </header>
       <hr />
       <Contact lang={chosenLanguage}/>
