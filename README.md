@@ -1,6 +1,6 @@
 # Portfolio
 
-##  Deployed to Netlify: [GuiMoret-Portfolio]()
+##  Deployed to Netlify: [GuiMoret-Portfolio]("https://guimoret-portfolio.netlify.app/")
 ---
 > ## Include
 >>### - Updated educational and professional records;

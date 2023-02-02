@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "homepage": "https://guimoret-portfolio.herokuapp.com/",
+  "homepage": "https://guimoret-portfolio.netlify.app/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
