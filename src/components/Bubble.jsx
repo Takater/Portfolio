@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import blueborder from '../images/blueborder.png'
 import {useMediaQuery} from 'react-responsive'
+import { useHistory } from 'react-router-dom'
+
+const history = useHistory();
 
 function Bubble (props) {
 
@@ -90,7 +93,7 @@ function Bubble (props) {
             if(props.lang === 'en') {
 
                 // Go to bubble name
-                window.location.pathname = event.target.name;
+                history.push('/' + event.target.name);
             }
             // Portuguese 
             else {
@@ -100,7 +103,7 @@ function Bubble (props) {
                  'projects-done';
 
                 // Open link
-                window.location.pathname = link;
+                history.push('/' + link);
             }
         } else {
 
@@ -122,7 +125,7 @@ function Bubble (props) {
                     'projects-done';
 
                 // Open Link
-                window.location.pathname = link;
+                history.push('/' + link);
             }
         }
     }
