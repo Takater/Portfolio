@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import alerts from "./Alerts";
 
 function FormItems(props) {
 
@@ -93,20 +94,26 @@ function FormItems(props) {
         let maxPrice = 0;
 
         switch(item) {
-            case 'DFS':
+            case 'DFS': {
                 // FROM SCRATCH PRICING
                 startingPrice *= 4;
+                let checked = 0;
                 checkboxes.forEach((checkbox) => {
                     if(checkbox.checked) {
                         // Add value if it's a number or 0 otherwise
-                        startingPrice += !isNaN(checkbox.value) ? parseInt(checkbox.value) : 0;   
-                    }
+                        startingPrice += !isNaN(checkbox.value) ? parseInt(checkbox.value) : 0;
+
+                        // Count checked
+                        checked++;
+                    } 
                 });
-                maxPrice = startingPrice * 5;
+                maxPrice = startingPrice * 5 * (checked/2);
                 break;
-            case 'NFEP':
+            }
+            case 'NFEP': {
                 // NEW FEATURES PRICING
                 startingPrice *= 2;
+                let checked = 0;
                 checkboxes.forEach((checkbox) => {
                     if(checkbox.checked) {
                         // Add up prices and multiply by the appropriate quantity for the appropriate choices, when necessary
@@ -117,17 +124,30 @@ function FormItems(props) {
                         } else {
                             startingPrice += parseInt(checkbox.value);
                         }
+                        checked++;
                     }
                 });
-                maxPrice = startingPrice * 4;
+                maxPrice = startingPrice * 4 * checked;
                 break;
-            case 'SEP':
+            }
+            case 'SEP': {
                 // SUPPORT
                 startingPrice *= 2;
-                maxPrice = startingPrice * 3.5;
+                maxPrice = startingPrice + (document.getElementById("description").value.length * 5)
                 break;
+            }
             default:
                 break;
+        }
+
+        // If no boxes where selected, maxPrice === 0, then alert
+        if (maxPrice === 0) {
+            alerts(props.lang, 'no-option');
+            return
+            // If 'SEP' and no description, starting and max prices are the same, then alert
+        } else if (startingPrice === maxPrice) {
+            alerts(props.lang, 'no-description');
+            return
         }
 
         setEstimatedPrice(props.lang === 'en' ?

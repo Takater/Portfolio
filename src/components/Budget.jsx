@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import KDALIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
 import FormItems from "./FormItems";
+import alerts from "./Alerts";
 
 function Budget(props) {
 
@@ -17,43 +18,142 @@ function Budget(props) {
         const secondPart = {}
 
         // FIRST PART
-            // NAME
+        
+        // NAME
         firstPart.name = document.getElementById('name').value;
-            // E-MAIL
+            
+        // If name is missing
+        if(!firstPart.name) {
+            alerts(props.lang, "no-name");
+            return;
+        }
+
+        // E-MAIL
         firstPart.email = document.getElementById('email').value;
-            // PHONE
-        firstPart.phone = document.getElementById('phone').vaue;
-            // TYPE
-        firstPart.type = document.getElementById('typeDev').textContent;
+
+        // If email is missing
+        if(!firstPart.email) {
+            alerts(props.lang, "no-email");
+            return;
+        }
+
+
+        // PHONE
+        firstPart.phone = document.getElementById('phone').value;
+
+        // If phone is missing
+        if(!firstPart.phone) {
+            alerts(props.lang, 'no-phone');
+            return;
+        }
+        
+        // TYPE
+        let typeDev = document.getElementById('typeDev');
+
+        firstPart.type = typeDev.options[typeDev.selectedIndex].textContent;
 
         // SECOND PART
-        let typeDev = document.getElementById('typeDev').value;
 
         // If Development from scratch or New Features on Existing Project
-        if(typeDev === 'DFS' || typeDev === 'NFEP') {
+        if(typeDev.value === 'DFS' || typeDev.value === 'NFEP') {
 
             // Array for checkboxes
             const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]')).filter(checkbox => checkbox.checked);
 
             // Check if at least one check box if tagged
             if(checkboxes.length === 0) {
-                alert(props.lang === 'en' ?
-                'Please, select at least one option' :
-                'Por favor, selecione ao menos uma opção'
-                );
+                alerts(props.lang, 'no-option');
                 return
             }
 
             // Build array with the label from all selected boxes
-            secondPart.features = checkboxes.filter(checkbox => checkbox.checked).map(checkbox => checkbox.nextElementSibling.textContent);
+            if(typeDev.value === 'DFS') {
+                
+                // For development from scratch, get only labels
+                secondPart.features = checkboxes.map(checkbox => checkbox.nextElementSibling.textContent);
+
+            } else {
+
+                // For new features on existing project
+                secondPart.features = checkboxes.map((checkbox) => {
+
+                    // If new page or new language, get quantity of pages
+                    if(checkbox.id === 'newPage' || checkbox.id === 'newLanguage') {
+                        
+                        // Chosen feature
+                        let context = checkbox.id;
+
+                        // Chosen quantity for either choice
+                        let quantity = context === 'newPage' ? document.querySelector("#qntNewPages").value : document.querySelector("#qntPages").value ;
+
+                        // Text edited
+                        let quantity_text
+
+                            
+                            // If portuguese
+                            if (props.lang === 'pt') {
+
+                                // If news pages
+                                if (context === 'newPage') {
+
+                                    // Build text
+                                    quantity_text = quantity > 1 ? 
+
+                                        // Plural
+                                        quantity + " " + checkbox.nextElementSibling.textContent.replace(" ", "s ") + "s" 
+                                        :
+                                        // Singular
+                                        quantity + " " + checkbox.nextElementSibling.textContent
+
+                                    // Return
+                                    return quantity_text;
+                                }
+
+                                // If new language
+                                else {
+                                    return checkbox.nextElementSibling.textContent + " para " + quantity + " página" + (quantity > 1 ? "s" : "");
+                                }
+                            }
+
+                            // If English 
+                            else {
+                                
+                                // If new pages
+                                if (context === 'newPage') {
+
+                                    // Build text
+                                    quantity_text = quantity > 1 ?
+
+                                        // Plural
+                                        quantity + " " + checkbox.nextElementSibling.textContent + "s"
+                                        :
+                                        // Singular
+                                        quantity + " " + checkbox.nextElementSibling.textContent
+
+                                    // Return message
+                                    return quantity_text
+                                }
+
+                                // If new language
+                                else {
+                                    return checkbox.nextElementSibling.textContent + " for " + quantity + " page" + (quantity > 1 ? "s" : "");
+                                }
+                            }
+
+                    } else {
+                        
+                        // If another, return only label
+                        return checkbox.nextElementSibling.textContent
+                    }
+                
+                // End of checkboxes mapping
+                });
+            }
         }
 
         // Check if description is not empty
         if(document.getElementById('description').value.length === 0) {
-            alert(props.lang === 'en' ? 
-            'Please, write a short description of what you wish' : 
-            'Por favor, escreva uma descrição curta do que deseja'
-            );
+            alerts(props.lang, 'no-description');
             return
         }
         secondPart.description = document.getElementById('description').value;
@@ -63,15 +163,15 @@ function Budget(props) {
         // Breakline
         const breakline ="%0D%0A"
 
-        const message_text = encodeURIComponent([
-            (props.lang === 'en' ? "*Name: *" : "*Nome: *") & firstPart.name,
-            "E-mail: " & firstPart.email,
-            (props.lang === 'en' ? "*Phone :*" : "*Telefone: *") & firstPart.phone,
-            (props.lang === 'en' ? "*Type of Development: *" : "*Tipo de Desenvolvimento: *") & firstPart.type,
+        const message_text = [
+            (props.lang === 'en' ? "*Name :* " : "*Nome :* ") + firstPart.name,
+            "*E-mail:* " + firstPart.email,
+            (props.lang === 'en' ? "*Phone :* " : "*Telefone :* ") + firstPart.phone,
+            (props.lang === 'en' ? "*Type of Development :* " : "*Tipo de Desenvolvimento :* ") + firstPart.type,
             secondPart.features && 
-                (props.lang === 'en' ? "*Included features: *" : "*Recursos inclusos: *") & secondPart.features.join(", "),
-            (props.lang === 'en' ? "*Description: *" : "*Descrição: *") & secondPart.description            
-        ].join(breakline));
+                (props.lang === 'en' ? "*Included features :* " : "*Recursos inclusos :* ") + secondPart.features.join(", "),
+            (props.lang === 'en' ? "*Description :* " : "*Descrição :* ") + secondPart.description            
+        ].join(breakline);
 
         const url = 'https://api.whatsapp.com/send?phone=5569984282019&text=' + message_text;
 

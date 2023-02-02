@@ -4,13 +4,22 @@ import {useMediaQuery} from 'react-responsive'
 
 function Bubble (props) {
 
+
+    // Media Queries
     const isMobile = useMediaQuery({ query: '(max-width: 600px)' });
     const isTablet = useMediaQuery({ query: '(max-width: 1080px)' });
 
+    // Name for pathname change
     const nome = props.text.toLowerCase().replaceAll(' ', '-');
 
+    // Hook for hovering images
     const [isHovered, setIsHovered] = useState(false);
 
+    /* 
+            BUBBLE 
+            STYLING
+    
+    */
     const bubbleStyle = {
         position: "absolute",
         width: isHovered ? "10.5%" : "10%",
@@ -32,6 +41,11 @@ function Bubble (props) {
         color: "#fff"
     };
 
+    /*   
+            MOBILE
+            STYLING
+    */
+
     const mobileStyle = {
         position: "relative",
         width: isMobile ? "30%" : "20%",
@@ -52,6 +66,8 @@ function Bubble (props) {
         cursor: "pointer"
     };
 
+
+    // IMAGE STYLE
     const borderImage = {
         position: "relative",
         filter: "saturate(5)",
@@ -63,25 +79,49 @@ function Bubble (props) {
         animationIterationCount: isHovered && "infinite"
     }
 
-    function goTo (e) {
-        if (e.target.name !== '' && e.target.name !== undefined) {
-            
+
+    // On Click Function
+    function goTo (event) {
+        if (event.target.name) {
+
             // Language Configuration
+
+            // English
             if(props.lang === 'en') {
-                window.location.pathname = e.target.name;
-            } else {
-                let link = e.target.name === 'solicitar-orçamento' ? 'request-budget' : 'projects-done';
+
+                // Go to bubble name
+                window.location.pathname = event.target.name;
+            }
+            // Portuguese 
+            else {
+                // Get correct pathname
+                let link = (event.target.name === 'solicitar-orçamento' || event.target.name === 'request-budget') ?
+                 'request-budget' : 
+                 'projects-done';
+
+                // Open link
                 window.location.pathname = link;
             }
         } else {
 
             // Curriculum File Based on language           Click on border 
-            if((e.target.id === "curriculum-vitae") || (e.target.id === '')) {
-                const link = require(props.lang === 'en' ? '../files/CV-GuilhermeMoret2022FS-Eng.pdf' : '../files/CV-GuilhermeMoret2022FS.pdf');
+            if((event.target.id === "curriculum-vitae") || (event.target.id === '')) {
+                const link = require(props.lang === 'en' ? 
+                // English CV file
+                '../files/CV-GuilhermeMoret2022FS-Eng.pdf' : 
+
+                // Portuguese CV file
+                '../files/CV-GuilhermeMoret2022FS.pdf');
+
+                // Open Link
                 window.open(link, '_blank');
             } else {
-                // Ternary to trigger hook in all languages
-                let link = e.target.id === 'solicitar-orçamento' ? 'request-budget' : 'projects-done';
+                // Ternary to trigger hook for pages in languages
+                let link = (event.target.id === 'solicitar-orçamento' || event.target.id === 'request-budget') ? 
+                    'request-budget' : 
+                    'projects-done';
+
+                // Open Link
                 window.location.pathname = link;
             }
         }
