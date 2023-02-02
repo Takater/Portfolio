@@ -37,6 +37,10 @@ function Personal (props) {
                                 text={props.lang === 'en' ? "This Portfolio" : "Esse Portfólio" }
                             />,
                             <Link 
+                                href="https://github.com/Takater/dep-mirian-moret" 
+                                text={props.lang === 'en' ? "Landing Page Model" : "Modelo de Página de Destino"}
+                            />,
+                            <Link 
                                 href="https://github.com/Takater" 
                                 text={props.lang === 'en' ? "In Progress" : "Em Andamento"}
                             />
