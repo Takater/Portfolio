@@ -80,7 +80,11 @@ function Personal (props) {
                         items = {[
                             <Link 
                                 href="https://github.com/Takater/HR-Automation-WhatsApp-WebScrapping" 
-                                text={props.lang === 'en' ? "VBA Automated WhatsApp Bulk Messaging" : "Envio de Mensagens em Massa no WhatsApp com VBA"}
+                                text={props.lang === 'en' ? "VBA Automated WhatsApp Bulk Messaging" : "Disparo de mensagens no WhatsApp com VBA"}
+                            />,
+                            <Link 
+                                href="https://github.com/Takater/RoboticMessenger" 
+                                text={props.lang === 'en' ? "Python Bulk Messaging System" : "Sistema de Disparo de Mensagens com Python"}
                             />,
                             <Link 
                                 href="https://github.com/Takater" 
