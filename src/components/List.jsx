@@ -12,7 +12,7 @@ function List (props) {
 
     return (
         <ul style={projectStyle}>
-            {items !== undefined && items.map((item, index) => (<li key={index} style={projectStyle}>{item}</li>))}
+            {items !== undefined && items.map((item, index) => (<li key={index} style={projectStyle}>{index + 1} - {item}</li>))}
         </ul>
     );
 }

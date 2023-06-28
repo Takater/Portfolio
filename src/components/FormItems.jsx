@@ -182,7 +182,7 @@ function FormItems(props) {
                             "Vários usuários"
                         }</label><br />
 
-                        <input type="checkbox" name="register_and_login" id="RegisterLogin" value="40"/>
+                        <input type="checkbox" name="register_and_login" id="RegisterLogin" value="50"/>
                         <label htmlFor="RegisterLogin">{props.lang === 'en' ?
                             "Register and Login" :
                             "Cadastro e Login"
@@ -200,7 +200,7 @@ function FormItems(props) {
                             "Arquivos internos"
                         }</label><br />
 
-                        <input type="checkbox" name="get_data_from_other_websites" id="ExternalAPI" value="40"/>
+                        <input type="checkbox" name="get_data_from_other_websites" id="ExternalAPI" value="50"/>
                         <label htmlFor="ExternalAPI">{props.lang === 'en' ?
                             "Get data from other websites" :
                             "Pegar dados de outros sites"
@@ -236,7 +236,7 @@ function FormItems(props) {
                             "Automação Arduino" 
                         }</label><br />
 
-                        <input type="checkbox" name="tasks_automation" id="TasksAutomation" value="100"/>
+                        <input type="checkbox" name="tasks_automation" id="TasksAutomation" value="120"/>
                         <label htmlFor="TasksAutomation">{props.lang === 'en' ?
                             "Tasks Automations" : 
                             "Automatização de Tarefas" 

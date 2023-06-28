@@ -34,7 +34,7 @@ function Header (props) {
                     }
                         {!isMobile && <br />} 
                     {props.lang === 'en' ?
-                        "that will be fowarded to my WhatsApp." :
+                        "that will be forwarded to my WhatsApp." :
                         "preenchendo um formulário que será encaminhado para o meu WhatsApp."
                     }
                 </p>
