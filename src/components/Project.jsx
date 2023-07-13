@@ -27,7 +27,7 @@ function Project (props) {
     }
 
     return (
-        <Tooltip title={<List items={props.items} />} placement="bottom">
+        <Tooltip title={<List items={props.items} type='project'/>} placement="bottom">
             <Grid item>
             <ButtonBase sx={ButtonBaseStyle}>
                 <Img alt="complex" className="projectIcon" src={props.image} />

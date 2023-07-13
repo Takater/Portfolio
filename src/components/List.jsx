@@ -4,6 +4,8 @@ function List (props) {
 
     const items = props.items
 
+    const type = props.type
+
     const projectStyle = {
         listStyleType: "none",
         margin: "0",
@@ -12,7 +14,12 @@ function List (props) {
 
     return (
         <ul style={projectStyle}>
-            {items !== undefined && items.map((item, index) => (<li key={index} style={projectStyle}>{index + 1} - {item}</li>))}
+            {items !== undefined && items.map((item, index) => (
+                <li key={index} style={projectStyle}>
+                    {/* Include listing number if item is project */}
+                    {type === 'project' && index + 1 + ' - '}{item}
+                </li>
+            ))}
         </ul>
     );
 }

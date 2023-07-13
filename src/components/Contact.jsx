@@ -27,7 +27,7 @@ function Contact (props) {
                     "https://api.whatsapp.com/send?phone=5569984282019&text=Olá,%20Guilherme!%20Eu%20vim%20do%20seu%20Portfólio.%20Prazer%20em%20te%20conhecer!"
                 }
                 ><button className="btn btn-outline-primary text-dark fw-bold"> WhatsApp</button></a>
-        ]} />)
+        ]} type='contact'/>)
     }
 
 
