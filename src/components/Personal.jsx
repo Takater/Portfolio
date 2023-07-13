@@ -4,7 +4,7 @@ import Project from './Project'
 import imgHTML from '../images/html.png'
 import devFullStack from '../images/devFullStack.png'
 import automation from '../images/automation.png'
-import web3 from '../images/web3.png'
+// import web3 from '../images/web3.png'
 import KDALIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
 import { useMediaQuery } from 'react-responsive';
 
@@ -30,7 +30,7 @@ function Personal (props) {
                 <Grid container spacing={props.lang === 'en' ? 3 : (isMobile ? 2.5 : 1)}>
                     <Project
                         image={imgHTML}
-                        title={props.lang === 'en' ? "Front-End Only" : "Apenas Front-End"}
+                        title={props.lang === 'en' ? "Static Pages" : "Páginas Estáticas"}
                         items = {[
                             <Link 
                                 href="https://github.com/Takater/Portfolio"
@@ -48,15 +48,19 @@ function Personal (props) {
                     />
                     <Project
                         image={devFullStack}
-                        title={props.lang === 'en' ? "Full Stack Web Apps" : "Aplicações Web Full Stack"}
+                        title={props.lang === 'en' ? "Complete Apps" : "Aplicações Completas"}
                         items = {[
                             <Link 
                                 href="https://github.com/Takater/CS50x-FinalProject" 
-                                text={props.lang === 'en' ? "Game Zone (Cs50x Final Project)" : "Game Zone (Projeto Final CS50x)"}
+                                text={props.lang === 'en' ? "Game Zone (Cs50x)" : "Game Zone (CS50x)"}
                             />,
                             <Link 
                                 href="https://github.com/Takater/MyStocks" 
                                 text={props.lang === 'en' ? "My Stocks App" : "Aplicativo My Stocks"}
+                            />,
+                            <Link 
+                                href="https://github.com/Takater/painel-isp"
+                                text={props.lang === 'en' ? "ISP-RJ Data Panel" : "Painel de Dados ISP-RJ"}
                             />,
                             <Link 
                                 href="https://github.com/Takater" 
@@ -64,7 +68,7 @@ function Personal (props) {
                             />
                         ]}
                     />
-                    <Project
+                    {/*<Project
                         image={web3}
                         title="Web 3.0"
                         items = {[
@@ -73,10 +77,10 @@ function Personal (props) {
                                 text={props.lang === 'en' ? "In Progress" : "Em Andamento"}
                             />
                         ]}
-                    />
+                    />*/}
                     <Project
                         image={automation}
-                        title={props.lang === 'en' ? "Automation Projects" : "Projetos de Automação"}
+                        title={props.lang === 'en' ? "Automation" : "Automação"}
                         items = {[
                             <Link 
                                 href="https://github.com/Takater/HR-Automation-WhatsApp-WebScrapping" 

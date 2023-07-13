@@ -108,10 +108,10 @@ function Bubble (props) {
             if((event.target.id === "curriculum-vitae") || (event.target.id === '')) {
                 const link = require(props.lang === 'en' ? 
                 // English CV file
-                '../files/CV-GuilhermeMoret2022FS-Eng.pdf' : 
+                '../files/CV-GuilhermeMoret2023.pdf' : 
 
                 // Portuguese CV file
-                '../files/CV-GuilhermeMoret2022FS.pdf');
+                '../files/CV-GuilhermeMoret2023Eng.pdf');
 
                 // Open Link
                 window.open(link, '_blank');
