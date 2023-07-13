@@ -51,7 +51,7 @@ function Contact (props) {
                     fontSize="large"
                 />
             </Tooltip>
-            <a className="contactIcon" rel="noreferrer" target="_blank" href="https://www.linkedin.com/in/guilherme-moret-03ba97219/">
+            <a className="contactIcon" rel="noreferrer" target="_blank" href="https://www.linkedin.com/in/guilherme-moret">
                 <LinkedInIcon
                     fontSize="large"
                 />
