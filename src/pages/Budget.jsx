@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import KDALIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
-import FormItems from "./FormItems";
-import alerts from "./Alerts";
+import FormItems from "../components/FormItems";
+import alerts from "../support/Alerts";
 
-function Budget(props) {
+export default function Budget(props) {
 
     const [selectedType, setType] = useState('DFS');
 
@@ -255,5 +255,3 @@ function Budget(props) {
         </div>
     )
 }
-
-export default Budget

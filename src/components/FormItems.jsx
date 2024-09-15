@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import alerts from "./Alerts";
+import alerts from "../support/Alerts";
 
 function FormItems(props) {
 

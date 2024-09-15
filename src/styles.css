@@ -5,7 +5,7 @@ body{
     margin: 0;
     text-align: center;
     color: #318f9a;
-    background-color: #050a30;
+    background-color: #010025;
 }
 
 h1{
@@ -38,10 +38,6 @@ h2, h3{
     }
 }
 
-img {
-    display: flex;
-}
-
 hr{
     border-color: #095d40;
     border-width: 10px;
@@ -53,14 +49,29 @@ hr{
 
 .country-flags {
     font-family: 'Noto Color Emoji', sans-serif;
-    font-size: xx-large;
-    margin-left: 3%;
-    margin-bottom: 5%;
+    background-color: #010025;
+    font-size: x-large;
 }
-.country-flags>span {
+
+.country-flags>option {
     margin-right: 3%;
     cursor: pointer;
-}    
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-link:hover, .nav-link.active {
+    /* From https://css.glass */
+    background: rgba(176, 176, 176, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.3px);
+    -webkit-backdrop-filter: blur(7.3px);
+    border: 1px solid rgba(176, 176, 176, 0.3);
+    color: #ddd !important;
+}
 
 
 .backHome {
@@ -86,21 +97,6 @@ hr{
     text-align: center;
 }
 
-#headerTag::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-image: url("./images/gui.png");
-    background-repeat: no-repeat;
-    background-size: 75%;
-    background-position: center top;
-    filter: hue-rotate(12.5deg) opacity(0.1) blur(1px);
-    border-radius: 0 0 50% 50%;
-    z-index: -2;
-
-}
-
 @media screen and (min-width: 320px) and (max-width: 425px) {
     #headerTag {
         padding: 5vh 2vw;
@@ -111,6 +107,12 @@ hr{
         background-position: center;
         border-radius: 0 0 25% 25%;
     }
+}
+
+.gui-head {
+    border-radius: 50%;
+    max-height: 200px;
+    max-width: auto;
 }
 
 .titleHi {

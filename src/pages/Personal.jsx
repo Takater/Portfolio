@@ -1,6 +1,6 @@
 import React from 'react'
 import Grid from '@mui/material/Grid';
-import Project from './Project'
+import Project from '../components/Project'
 import imgHTML from '../images/html.png'
 import devFullStack from '../images/devFullStack.png'
 import automation from '../images/automation.png'

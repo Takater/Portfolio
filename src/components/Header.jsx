@@ -1,48 +1,46 @@
-import React from 'react'
-import { useMediaQuery } from 'react-responsive';
-import Bubbles from './Bubbles'
-function Header (props) {
+import React, { useEffect, useState } from "react";
+import Texts from "../support/Texts";
 
-    const isMobile = useMediaQuery({ query: '(max-width: 600px)' });
+// Country flag emojis
+const brazilFlag = '🇧🇷';
+const usaFlag = '🇺🇸';
+const italyFlag = '🇮🇹';
+
+export default function Header (props) {
+
+    const chosenLanguage = localStorage.getItem("guimoret-portfolio-chosenLanguage") || "pt";
+
+    // Language selector
+    function LanguageSelector() {
+        return (
+            <select id="languageSelector" className="country-flags" onChange={props.languageChangeHandler} defaultValue={chosenLanguage}>
+                <option value="pt" role='img' aria-label='brazilFlag'>{brazilFlag}</option>
+                <option value="en" role='img' aria-label='usaFlag'>{usaFlag}</option>
+                <option value="it" role='img' aria-label='italyFlag'>{italyFlag}</option>
+            </select>
+        )
+    }
 
     return (
-            <div className="header-div">
-                <h1><span className='titleHi'>
-                        {props.lang === 'en' ? 
-                            "Hello, there! I'm" : 
-                            "Oi! Eu sou o"
-                        }
-                    </span><br/>
-                    <span> Guilherme Moret </span>
-                </h1>
-                <h3><em>
-                        {props.lang === 'en' ? 
-                            "Software Engineering Student and Full Stack Developer I" : 
-                            "Estudante de Engenharia de Software e Desenvolvedor Full Stack Junior"
-                        } 
-                    </em>
-                </h3>
-                <p>
-                    { props.lang === 'en' ?
-                        "This is my Portfolio, here you can view my education and work experience, " : 
-                        "Esse é o meu Portfólio, aqui você pode ver minhas experiências de educação "
-                    }
-                         {!isMobile && <br />}
-                    {props.lang=== 'en' ? 
-                        "projects I've worked on, and request a project budget by filling a form " : 
-                        "e trabalho, projetos nos quais trabalhei, e solicitar um orçamento de projeto "
-                    }
-                        {!isMobile && <br />} 
-                    {props.lang === 'en' ?
-                        "that will be forwarded to my WhatsApp." :
-                        "preenchendo um formulário que será encaminhado para o meu WhatsApp."
-                    }
-                </p>
-                <Bubbles 
-                    lang={props.lang}
-                />
+        <nav className="navbar navbar-expand-lg">
+            <div className="container-fluid">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon text-white"></span>
+                </button>
+                <div className="navbar-collapse collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <a className="nav-link" href="/">{Texts.navbarLinks[chosenLanguage][0]}</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/projects-done">{Texts.navbarLinks[chosenLanguage][1]}</a>
+                            </li>
+                            <li className="nav-item">
+                                <LanguageSelector />
+                            </li>
+                        </ul>
+                </div>
             </div>
-    );
+        </nav>
+    )
 }
-
-export default Header;
