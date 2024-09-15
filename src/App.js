@@ -36,24 +36,12 @@ function App() {
 
   return (
     <div>
-      <header id="headerTag">
-        {/* 
-            
-            CONDITIONAL RENDERING OF PAGES PASSING LANGUAGE HOOK,
-            BASED ON PATHNAME
-        
-        */}
-        {page === "/" && <MainPage lang={chosenLanguage}/> }
-        {page === "/projects-done" && <Personal lang={chosenLanguage}/>}
-        {page === "/request-budget" && <Budget lang={chosenLanguage}/>}
-      </header>
+      <Header lang={chosenLanguage} languageChangeHandler={handleLanguageChange} />
+      {page === "/" && <MainPage lang={chosenLanguage}/> }
+      {page === "/projects-done" && <Personal lang={chosenLanguage}/>}
+      {page === "/request-budget" && <Budget lang={chosenLanguage}/>}
 
-      {/* CONTACT ME BAR */}
-      <hr />
-      <Contact lang={chosenLanguage}/>
-      <div className="bottom-container">
-        <p><em>2024 © Guilherme Moret</em></p>
-      </div>
+      
     </div>
   );
 }
