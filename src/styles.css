@@ -14,14 +14,30 @@ body{
     width: 25%;
 }
 
-h1{
+h1 {
     font-family: 'Nova Flat', cursive;
     font-weight: 900;
     font-style: italic;
-    font-size: 1rem;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 600px) {
+    #main-div {
+        width: 35%;
+    }
+
+    h1 {
+        font-size: 1rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
 }
 
 
+#languageSelector {
+    margin-left: 3vw;
+}
 
 h1, h2{
     text-shadow: #000 2px 2px;
@@ -29,15 +45,6 @@ h1, h2{
 
 h2, h3{
     font-family: 'Ubuntu', sans-serif;
-}
-
-@media screen and (max-width: 425px) {
-    h1 {
-        font-size: 3rem;
-    }
-    h3 {
-        font-size: 1.25rem;
-    }
 }
 
 /*hr{

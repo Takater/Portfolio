@@ -28,11 +28,11 @@ export default function Header (props) {
     return (
         <div className="container" id="main-div">
             <img className="gui-head" src={Gui} alt='Selfie Guilherme'/>
-                <LanguageSelector />
                 <h1><span className='titleHi'>
                         {Texts.titleHi[props.lang]}
                     </span><br/>
                     <span> Guilherme Moret </span>
+                <LanguageSelector />
                 </h1>
                 <hr />
                 <h3><em>
@@ -44,12 +44,10 @@ export default function Header (props) {
                         "This is my Portfolio, here you can view my education and work experience, " : 
                         "Esse é o meu Portfólio, aqui você pode ver minhas experiências de educação "
                     }
-                         {!isMobile && <br />}
                     {props.lang=== 'en' ? 
                         "projects I've worked on, and request a project budget by filling a form " : 
                         "e trabalho, projetos nos quais trabalhei, e solicitar um orçamento de projeto "
                     }
-                        {!isMobile && <br />} 
                     {props.lang === 'en' ?
                         "that will be forwarded to my WhatsApp." :
                         "preenchendo um formulário que será encaminhado para o meu WhatsApp."
