@@ -1,8 +1,8 @@
 const Texts = {
     navbarLinks: {
-        'pt': ['Início', 'Projetos', 'Orçamento'],
-        'en': ['Home', 'Projects', 'Budget'],
-        'it': ['Inizio', 'Progetti', 'Budget']
+        'pt': ['Início', 'Experiências Profissionais','Projetos', 'Orçamento'],
+        'en': ['Home', 'Work Experience', 'Projects', 'Budget'],
+        'it': ['Inizio', 'Esperienze lavorative', 'Progetti', 'Budget']
     },
     titleHi: {
         'pt': "Oi! Eu sou o ",
@@ -10,9 +10,12 @@ const Texts = {
         'it': "Ciao! Io sono"
     },
     devPhrase: {
-        'pt': "Estudante de Engenharia de Software e Desenvolvedor Full Stack Pleno",
-        'en': "Software Engineering Student and Full Stack Developer Mid-level",
-        'it': "Studente di Ingegneria del Software e Sviluppatore Full Stack di livello medio"
+        'pt': "Desenvolvedor Full Stack Pleno",
+        'en': "Full Stack Developer Mid-level",
+        'it': "Sviluppatore Full Stack di livello medio"
+    },
+    mainParagraph: {
+        'pt': "Bem-vindo ao meu portfólio! Transformo ideias em soluções tecnológicas sob medida, desenvolvendo sistemas, otimizando sites e automatizando tarefas. Ofereço também consultoria estratégica para ajudar você ou sua empresa a escolher e implementar as melhores ferramentas, sejam elas personalizadas ou já disponíveis no mercado."
     }
 }
 

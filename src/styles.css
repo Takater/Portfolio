@@ -3,47 +3,67 @@
 
 body{
     text-align: center;
-    color: #abebf4;
-    background-color: #030120;
+    color: #aad8d3;
+    background-color: #010f1a;
 }
 
 #main-div {
-    position: relative;
-    margin-left: 0;
+    position: static;
     text-align: left;
-    width: 25%;
+}
+
+#main-div h3 {
+    font-size: medium;
 }
 
 h1 {
     font-family: 'Nova Flat', cursive;
     font-weight: 900;
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: 1rem;
+}
+
+#languageSelector {
+    margin-left: 1vw;
 }
 
 @media screen and (max-width: 600px) {
+    
+    .gui-head {
+        max-height: 100px !important;
+    }
+
     #main-div {
-        width: 35%;
+        width: fit-content;
+    }
+
+    #languageSelector {
+        font-size: small;
     }
 
     h1 {
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
     h3 {
-        font-size: 1.2rem;
+        font-size: 52.5% !important;
+    }
+
+    #main-page {
+        margin-left: 5vw;
+    }
+
+    #main-paragraph {
+        font-size: 53%;
     }
 }
 
 
-#languageSelector {
-    margin-left: 3vw;
-}
 
 h1, h2{
     text-shadow: #000 2px 2px;
 }
 
-h2, h3{
+h2, h3 {
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -58,13 +78,22 @@ h2, h3{
 
 .country-flags {
     font-family: 'Noto Color Emoji', sans-serif;
-    background-color: #010025;
+    background-color: #aad8d3;
     font-size: x-large;
+    cursor: pointer;
 }
 
 .country-flags>option {
     margin-right: 3%;
-    cursor: pointer;
+}
+
+.country-flags>option:checked {
+    background-color: #213e9c !important;
+}
+
+#menu-links ul {
+    padding-left: 0;
+    list-style-type: none;
 }
 
 .nav-link {
@@ -84,6 +113,19 @@ h2, h3{
 
 .titleHi {
     color: #10bcd1
+}
+
+#main-page {
+    margin-top: 1rem;
+}
+
+#main-paragraph {
+    justify-self: center;
+    width: 75%;
+    font-family: 'Ubuntu', sans-serif;
+    color:#fff;
+    background: rgba(176, 176, 176, 0.25);
+    border-radius: 16px;
 }
 
 
@@ -132,7 +174,7 @@ header>div>h3 {
 }
 
 h3>em {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(100, 100, 100, 0.5);
 }
 
 .header-div {
@@ -309,6 +351,10 @@ input[type="checkbox"] {
 .contactIcon {
     margin-left: 2rem;
     color: #d2b29c;
+}
+
+.contactIcon:hover {
+    color:#e5e5e5;
 }
 
 /* FOOTER */

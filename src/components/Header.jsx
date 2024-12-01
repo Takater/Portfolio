@@ -34,45 +34,22 @@ export default function Header (props) {
                     <span> Guilherme Moret </span>
                 <LanguageSelector />
                 </h1>
-                <hr />
-                <h3><em>
+                <h3>
+                    <em>
                         {Texts.devPhrase[props.lang]} 
                     </em>
                 </h3>
-                <p>
-                    { props.lang === 'en' ?
-                        "This is my Portfolio, here you can view my education and work experience, " : 
-                        "Esse é o meu Portfólio, aqui você pode ver minhas experiências de educação "
-                    }
-                    {props.lang=== 'en' ? 
-                        "projects I've worked on, and request a project budget by filling a form " : 
-                        "e trabalho, projetos nos quais trabalhei, e solicitar um orçamento de projeto "
-                    }
-                    {props.lang === 'en' ?
-                        "that will be forwarded to my WhatsApp." :
-                        "preenchendo um formulário que será encaminhado para o meu WhatsApp."
-                    }
-                </p>
-                <div>
-                <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                </button>
-                <div>
-                        <ul className="me-auto mb-2 mb-lg-0">
-                            <li>
-                                <a href="/">{Texts.navbarLinks[chosenLanguage][0]}</a>
-                            </li>
-                            <li>
-                                <a href="/projects-done">{Texts.navbarLinks[chosenLanguage][1]}</a>
-                            </li>
-                        </ul>
-                </div>
-                </div>
-                {/* CONTACT ME BAR */}
                 <hr />
-                <Contact lang={props.lang}/>
-                <div className="bottom-container">
-                    <p><em>2024 © Guilherme Moret</em></p>
+                <div id="menu-links">
+                    <ul className="me-auto mb-2 mb-lg-0">
+                        {["/", "/experience", "/projects-done", "/budget"].map((url, index) => {
+                            return (
+                                <li key={Texts.navbarLinks[chosenLanguage][index]}>
+                                    <a className="nav-link" href={url}>{Texts.navbarLinks[chosenLanguage][index]}</a>
+                                </li>
+                            )
+                        })}
+                    </ul>
                 </div>
         </div>
     )

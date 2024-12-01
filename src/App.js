@@ -36,11 +36,22 @@ function App() {
 
   return (
     <div>
-      <Header lang={chosenLanguage} languageChangeHandler={handleLanguageChange} />
-      {page === "/" && <MainPage lang={chosenLanguage}/> }
-      {page === "/projects-done" && <Personal lang={chosenLanguage}/>}
-      {page === "/request-budget" && <Budget lang={chosenLanguage}/>}
-
+      <div className="row align-items-start">
+        <div className="col-3">
+          <Header lang={chosenLanguage} languageChangeHandler={handleLanguageChange} />
+        </div>
+        <div className="col-9">
+          {page === "/" && <MainPage lang={chosenLanguage}/> }
+          {page === "/projects-done" && <Personal lang={chosenLanguage}/>}
+          {page === "/request-budget" && <Budget lang={chosenLanguage}/>}
+        </div>
+      </div>
+      {/* CONTACT ME BAR */}
+      <hr />
+      <Contact lang={chosenLanguage}/>
+      <div className="bottom-container">
+          <p><em>2024 © Guilherme Moret</em></p>
+      </div>
       
     </div>
   );

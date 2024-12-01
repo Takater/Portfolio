@@ -10,6 +10,10 @@ export default function MainPage (props) {
     const isMobile = useMediaQuery({ query: '(max-width: 600px)' });
 
     return (
-            <h1>Main Page</h1>
+        <div id="main-page">
+            <p id="main-paragraph">
+                {Texts.mainParagraph[props.lang]}
+            </p>
+        </div>
     );
 }
