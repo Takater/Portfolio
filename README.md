@@ -8,4 +8,4 @@
 >>### - Request budget form with price range generator
 ---
 > ## Built with **React.js**
->> ### Last updated: July 13th 2023
+>> ### Last updated: March 6th 2025
