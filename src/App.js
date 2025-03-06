@@ -5,13 +5,13 @@ import Contact from './components/Contact'
 import Personal from './pages/Personal';
 import Budget from './pages/Budget';
 import { useEffect, useState } from 'react';
-
-// Country flag emojis
-const brazilFlag = '🇧🇷';
-const usaFlag = '🇺🇸';
-const italyFlag = '🇮🇹';
+import { useMediaQuery } from 'react-responsive';
+import LanguageSelector from './components/LanguageSelector';
+import Work from './pages/Work';
 
 function App() {
+
+  const isMobile = useMediaQuery({ query: '(max-width: 600px)' });
 
   // Hook for chosen language
   const [chosenLanguage, setChosenLanguage] = useState('pt');
@@ -20,8 +20,6 @@ function App() {
   function handleLanguageChange() {
     const language = document.getElementById("languageSelector").value;
     setChosenLanguage(language);
-    console.log(language);
-    
     localStorage.setItem('guimoret-portfolio-chosenLanguage', language);
   }
 
@@ -37,20 +35,28 @@ function App() {
   return (
     <div>
       <div className="row align-items-start">
-        <div className="col-3">
-          <Header lang={chosenLanguage} languageChangeHandler={handleLanguageChange} />
-        </div>
-        <div className="col-9">
+
+        { /* Include header component if not mobile and only language selector otherwise */
+        isMobile ? <LanguageSelector languageChangeHandler={handleLanguageChange} /> :
+          <div className="col-3">
+            <Header lang={chosenLanguage} languageChangeHandler={handleLanguageChange} />
+          </div>
+        }
+
+        {/* Use col-9 class if not mobile */}
+        <div className={isMobile ? "" : "col-9"}>
           {page === "/" && <MainPage lang={chosenLanguage}/> }
           {page === "/projects-done" && <Personal lang={chosenLanguage}/>}
           {page === "/request-budget" && <Budget lang={chosenLanguage}/>}
+          {page === "/experience" && <Work lang={chosenLanguage} />}
         </div>
       </div>
+      
       {/* CONTACT ME BAR */}
       <hr />
       <Contact lang={chosenLanguage}/>
       <div className="bottom-container">
-          <p><em>2024 © Guilherme Moret</em></p>
+          <p><em>2025 © Guilherme Moret</em></p>
       </div>
       
     </div>

@@ -1,110 +1,64 @@
-import React from 'react'
-import Grid from '@mui/material/Grid';
-import Project from '../components/Project'
-import imgHTML from '../images/html.png'
-import devFullStack from '../images/devFullStack.png'
-import automation from '../images/automation.png'
-// import web3 from '../images/web3.png'
-import KDALIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
+import React, { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive';
+import Texts, { project_types } from '../support/Texts';
+import KDAUIcon from '@mui/icons-material/KeyboardDoubleArrowUp'
+import LinearMenu from '../components/LinearMenu';
 
-function Personal (props) {
+export default function Personal (props) {
 
     const isMobile = useMediaQuery({ query: '(max-width: 600px)' });
 
-    function Link (prop) {
-        const LinkStyle = {
-            color: (prop.text === "In Progress" || prop.text === "Em Andamento") && '#ad5'
-        }
-        return (<a target="_blank" rel="noreferrer" style={LinkStyle} className="project-link" href={prop.href}>{prop.text}</a>);
+    const [filter, setFilter] = useState('all');
+    const [projectsList, setProjectsList] = useState(Texts.projects);
+    
+    useEffect(() => {
+        const filteredList = Texts.projects.filter(proj => filter === 'all' ? true : proj.type['en'] === filter)
+        setProjectsList(filteredList)
+    }, [filter])
+
+    function handleFilterChange() {
+        const filter = document.getElementById("filterSelect").value;
+        setFilter(filter);
     }
 
     return (
-        <div id="projects">
-            <h2><span>
-                {props.lang === 'en' ? "Projects" : "Projetos"}
-                </span>
-            </h2>
-            <div id="projects-bubbles">
-                                                    {/* ADJUST SPACING ACCORDING TO LANGUAGE AND SCREEN SIZE */}
-                <Grid container spacing={props.lang === 'en' ? 3 : (isMobile ? 2.5 : 1)}>
-                    <Project
-                        image={imgHTML}
-                        title={props.lang === 'en' ? "Static Pages" : "Páginas Estáticas"}
-                        items = {[
-                            <Link 
-                                href="https://github.com/Takater/Portfolio"
-                                text={props.lang === 'en' ? "This Portfolio" : "Esse Portfólio" }
-                            />,
-                            <Link 
-                                href="https://github.com/Takater/dep-mirian-moret" 
-                                text={props.lang === 'en' ? "Landing Page Model" : "Modelo de Página de Destino"}
-                            />,
-                            <Link 
-                                href="https://github.com/Takater" 
-                                text={props.lang === 'en' ? "In Progress" : "Em Andamento"}
-                            />
-                        ]}
-                    />
-                    <Project
-                        image={devFullStack}
-                        title={props.lang === 'en' ? "Complete Apps" : "Aplicações Completas"}
-                        items = {[
-                            <Link 
-                                href="https://github.com/Takater/CS50x-FinalProject" 
-                                text={props.lang === 'en' ? "Game Zone (Cs50x)" : "Game Zone (CS50x)"}
-                            />,
-                            <Link 
-                                href="https://github.com/Takater/MyStocks" 
-                                text={props.lang === 'en' ? "My Stocks App" : "Aplicativo My Stocks"}
-                            />,
-                            <Link 
-                                href="https://github.com/Takater/painel-isp"
-                                text={props.lang === 'en' ? "ISP-RJ Data Panel" : "Painel de Dados ISP-RJ"}
-                            />,
-                            <Link 
-                                href="https://github.com/Takater" 
-                                text={props.lang === 'en' ? "In Progress" : "Em Andamento"}
-                            />
-                        ]}
-                    />
-                    {/*<Project
-                        image={web3}
-                        title="Web 3.0"
-                        items = {[
-                            <Link 
-                                href="https://github.com/Takater" 
-                                text={props.lang === 'en' ? "In Progress" : "Em Andamento"}
-                            />
-                        ]}
-                    />*/}
-                    <Project
-                        image={automation}
-                        title={props.lang === 'en' ? "Automation" : "Automação"}
-                        items = {[
-                            <Link 
-                                href="https://github.com/Takater/HR-Automation-WhatsApp-WebScrapping" 
-                                text={props.lang === 'en' ? "VBA Automated WhatsApp Bulk Messaging" : "Disparo de mensagens no WhatsApp com VBA"}
-                            />,
-                            <Link 
-                                href="https://github.com/Takater/RoboticMessenger" 
-                                text={props.lang === 'en' ? "Python Bulk Messaging System" : "Sistema de Disparo de Mensagens com Python"}
-                            />,
-                            <Link 
-                                href="https://github.com/Takater" 
-                                text={props.lang === 'en' ? "In Progress" : "Em Andamento"}
-                            />
-                        ]}
-                    />
-                </Grid>
-            </div>
-            <button className="backHome" onClick={() => window.location.pathname = "/"}>
-                <KDALIcon 
+        <div id="projects" className='align-items-center'>
+            <h2>{Texts.navbarLinks[props.lang][2]}</h2>
+            {isMobile && <LinearMenu lang={props.lang} />}
+            <hr />
+            <select className={'form-select text-center mx-auto ' + (isMobile ? 'w-50' : 'w-25')} defaultValue={filter} onChange={handleFilterChange} id="filterSelect">
+                {['all', ...project_types.map((each => each['en']))].map((value, index) => {
+                    return (
+                        <option value={value} key={value}>
+                            {Texts.projectsFilter[index][props.lang]}
+                        </option>
+                    )
+                })}
+            </select>
+            {
+                projectsList.map((proj, ind) => {
+                    return (
+                        <div className='card h-100 w-75 glass-bg my-3 mx-auto' key={"Project " + ind}>
+                            <h5 className='card-title text-white'>{proj.title[props.lang]}</h5>
+                            <h6 className='card-title text-dark'>{proj.type[props.lang]}</h6>
+                            <p className={'card-text' + (isMobile ? ' projects-text-mobile' : '')}>{proj.longDescription[props.lang]}<br />
+                                
+                            </p>
+                            {proj.link !== "" && 
+                                <span className='mb-3'>
+                                    <a className='project-page-link' href={proj.link}>{Texts.seeSourceCode[props.lang]}</a>
+                                </span>
+                            }
+                            <p className='card-footer text-dark fw-bold'>{proj.details[props.lang]}</p>
+                        </div>
+                    )
+                })
+            }
+            <button className="backTop" onClick={() => document.documentElement.scrollTop = 0}>
+                <KDAUIcon 
                     fontSize="large"
                 />
             </button>
         </div>
     );
 }
-
-export default Personal;

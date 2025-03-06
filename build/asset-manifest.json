@@ -1,22 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.a99acee0.css",
-    "main.js": "/static/js/main.a66d39e0.js",
+    "main.css": "/static/css/main.ea675e5f.css",
+    "main.js": "/static/js/main.e19bff87.js",
     "static/js/787.1ed0c42c.chunk.js": "/static/js/787.1ed0c42c.chunk.js",
-    "static/media/devFullStack.png": "/static/media/devFullStack.795eaed6b16ac8466f8a.png",
     "static/media/gui_head.png": "/static/media/gui_head.b94d20333308a1d2266a.png",
-    "static/media/html.png": "/static/media/html.9000282b848714aef633.png",
-    "static/media/blueborder.png": "/static/media/blueborder.dda514980d27593518c6.png",
-    "static/media/CV-GuilhermeMoret2023.pdf": "/static/media/CV-GuilhermeMoret2023.7f7fd8e5245416ab2c2d.pdf",
-    "static/media/CV-GuilhermeMoret2023Eng.pdf": "/static/media/CV-GuilhermeMoret2023Eng.3bc782c2252bb21d1d32.pdf",
-    "static/media/automation.png": "/static/media/automation.5c71914163b6c86409c0.png",
+    "static/media/CV-GuilhermeMoret2025Eng.pdf": "/static/media/CV-GuilhermeMoret2025Eng.65567b51e279ba7daf2c.pdf",
+    "static/media/CV-GuilhermeMoret2025It.pdf": "/static/media/CV-GuilhermeMoret2025It.67b58626bbdc8284c0e8.pdf",
+    "static/media/CV-GuilhermeMoret2025.pdf": "/static/media/CV-GuilhermeMoret2025.80b2aaf6c0a8d63802d2.pdf",
     "index.html": "/index.html",
-    "main.a99acee0.css.map": "/static/css/main.a99acee0.css.map",
-    "main.a66d39e0.js.map": "/static/js/main.a66d39e0.js.map",
+    "main.ea675e5f.css.map": "/static/css/main.ea675e5f.css.map",
+    "main.e19bff87.js.map": "/static/js/main.e19bff87.js.map",
     "787.1ed0c42c.chunk.js.map": "/static/js/787.1ed0c42c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a99acee0.css",
-    "static/js/main.a66d39e0.js"
+    "static/css/main.ea675e5f.css",
+    "static/js/main.e19bff87.js"
   ]
 }

@@ -27,6 +27,11 @@ h1 {
     margin-left: 1vw;
 }
 
+#menu-links ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
 @media screen and (max-width: 600px) {
     
     .gui-head {
@@ -34,11 +39,14 @@ h1 {
     }
 
     #main-div {
-        width: fit-content;
+        width: max-content;
     }
 
     #languageSelector {
-        font-size: small;
+        font-size: large;
+        width: 25%;
+        text-align: center;
+        margin: auto;
     }
 
     h1 {
@@ -48,12 +56,17 @@ h1 {
         font-size: 52.5% !important;
     }
 
-    #main-page {
-        margin-left: 5vw;
+    #main-paragraph {
+        font-size: 75%;
     }
 
-    #main-paragraph {
-        font-size: 53%;
+    #menu-links {
+        justify-self: center;
+    }
+
+    #menu-links>ul>li{
+        font-size: 2.5vw;
+        float: inline-start;
     }
 }
 
@@ -91,11 +104,6 @@ h2, h3 {
     background-color: #213e9c !important;
 }
 
-#menu-links ul {
-    padding-left: 0;
-    list-style-type: none;
-}
-
 .nav-link {
     color: white;
 }
@@ -128,8 +136,7 @@ h2, h3 {
     border-radius: 16px;
 }
 
-
-.backHome {
+.backTop {
     color: #d2d29c;
     cursor: pointer;
     background: rgba(50, 50, 50, 0.5);
@@ -139,7 +146,7 @@ h2, h3 {
     padding: 0;
 }
 
-.backHome:hover {
+.backTop:hover {
     color: #fff;
     background: rgba(50, 50, 50, 0.8);
 }
@@ -212,6 +219,35 @@ h3>em {
     border-radius: 10%;
 }
 
+#experience-section .card, #projects-section .card {
+    border-radius: 10px;
+}
+
+.see-all {
+    text-decoration: none;
+    color: inherit;
+}
+
+.see-all:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color:#10bcd1;
+}
+
+.project-details {
+    color: #0a0a0a;
+}
+
+#see-full-resume {
+    font-size: small;
+}
+
+#see-full-resume:hover {
+    color: #10bcd1;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /* PROJECTS */
 
 #projects-bubbles {
@@ -242,8 +278,30 @@ h3>em {
     font-size: 1rem;
 }
 
-.project-link:hover{
+.project-page-link {
+    color: #000;
+    border:2px solid #000;
+    border-radius: 10px;
+    padding: 3px 5px;
+    background-color: #10bcd1;
+    text-decoration: none;
+}
+
+.project-link:hover, .project-page-link:hover {
     color: #10bcd1;
+    background-color: #000;
+}
+
+.projects-text-mobile {
+    font-size: smaller;
+    text-shadow: #000 0.5px 0.5px;
+}
+
+.glass-bg {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(176, 176, 176, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 .MuiTypography-subtitle1 {
@@ -276,7 +334,7 @@ h3>em {
 
 #formBudget {
     background-color: rgba(33, 62, 156, 0.75);
-    width: 50%;
+    width: 75%;
     margin: 0 auto;
     padding: 2% 2%;
     border-radius: 16px;
@@ -296,15 +354,17 @@ h3>em {
     margin-left: 20%; margin-top: 3%;
 }
 
-#formSecondPart>div>label, label[for="qntNewPages"], label[for="qntPages"] {
+#formSecondPart div label, label[for="qntNewPages"], label[for="qntPages"] {
     margin-left: 5%;
     color: #0a0a0a;
     font-weight: 500;
     cursor: pointer;
-} label[for="qntNewPages"], label[for="qntPages"] {margin-left: 0;}
+} 
 
-#qntNewPages, #qntPages {
-    width: 40px;
+label[for="qntNewPages"], label[for="qntPages"] {margin-left: 0;}
+
+input[type="number"] {
+    width: 10%;
 }
 
 #description {
@@ -314,7 +374,7 @@ h3>em {
 
 #characters {
     font-size: x-small;
-    color:#050a30;
+    color:#ddd;
 }
 
 #submitBtn {
@@ -355,6 +415,17 @@ input[type="checkbox"] {
 
 .contactIcon:hover {
     color:#e5e5e5;
+}
+
+.phoneOrWhatsList {
+    margin: auto;
+    padding: auto;
+}
+
+.phoneOrWhatsList li {
+    list-style: none;
+    margin: auto;
+    padding: 2px;
 }
 
 /* FOOTER */
