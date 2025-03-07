@@ -66,7 +66,7 @@ export function calculateEstimatedPrice(item, lang) {
     }
 
     // If no boxes where selected, maxPrice === 0, then alert
-    if (maxPrice === 0) {
+    if (['DFS', 'NFEP'].includes(item) && maxPrice === 0) {
         alert(Texts.form.alerts['no-option'][lang]);
         return
     }
