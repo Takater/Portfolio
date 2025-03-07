@@ -552,7 +552,7 @@ const Texts = {
                 {
                     'name': "online_payment",
                     'id': "PaymentOpt",
-                    'value': "80",
+                    'value': "150",
                     'pt': "Serviço de pagamento online",
                     'en': "Online payment service",
                     'it': "Servizio di pagamento online"
@@ -560,7 +560,7 @@ const Texts = {
                 {
                     'name': "multiple_languages",
                     'id': "MultiLang",
-                    'value': "30",
+                    'value': "100",
                     'pt': "Múltiplos idiomas",
                     'en': "Multiple languages",
                     'it': "Diverse lingue"
@@ -568,7 +568,7 @@ const Texts = {
                 {
                     'name': "generate_charts",
                     'id': "Charts",
-                    'value': "30",
+                    'value': "50",
                     'pt': "Gerar gráficos",
                     'en': "Generate charts",
                     'it': "Generare grafici"
@@ -580,6 +580,14 @@ const Texts = {
                     'pt': "Planilha com fórmulas ou macros",
                     'en': "Spreadsheet with formulas or macros",
                     'it': "Foglio di calcolo con formule o macro"
+                },
+                {
+                    'name': "power_bi",
+                    'id': "PowerBi",
+                    'value': "100",
+                    'pt': "Painéis Power BI",
+                    'en': "Power BI Dashboards",
+                    'it': "Dashboard Power BI"
                 },
                 {
                     'name': "arduino_automation",
@@ -610,7 +618,7 @@ const Texts = {
                 {
                     'name': "new_page",
                     'id': "NewPage",
-                    'value': "50",
+                    'value': "100",
                     'pt': "Nova página",
                     'en': "New page",
                     'it': "Nuova pagina"
@@ -618,7 +626,7 @@ const Texts = {
                 {
                     'name': "new_user",
                     'id': "NewUser",
-                    'value': "30",
+                    'value': "50",
                     'pt': "Novo usuário e suas permissões",
                     'en': "New user and their permissions",
                     'it': "Nuovo utente e i suoi permessi"
@@ -634,10 +642,18 @@ const Texts = {
                 {
                     'name': "new_macro",
                     'id': "NewMacro",
-                    'value': "40",
+                    'value': "50",
                     'pt': "Nova fórmula ou macro para Planilha",
                     'en': "New formula or macro for Spreadsheet",
                     'it': "Nuova formula o macro per un foglio di calcolo"
+                },
+                {
+                    'name': "power_bi",
+                    'id': "PowerBi",
+                    'value': "100",
+                    'pt': "Painéis Power BI",
+                    'en': "Power BI Dashboards",
+                    'it': "Dashboard Power BI"
                 },
                 {
                     'name': "integrate_tool",
@@ -646,6 +662,14 @@ const Texts = {
                     'pt': "Integrar com ferramenta externa",
                     'en': "Integrate with external tool",
                     'it': "Integrazione con strumento esterno"
+                },
+                {
+                    'name': "online_payment",
+                    'id': "PaymentOpt",
+                    'value': "150",
+                    'pt': "Incluir serviço de pagamento online",
+                    'en': "Include online payment service",
+                    'it': "Includere il servizio di pagamento online"
                 },
                 {
                     'name': "process_automation",
