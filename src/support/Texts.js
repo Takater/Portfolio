@@ -350,7 +350,31 @@ const Texts = {
                 'it': "WordPress, PHP, Javascript, Ottimizzazione dei Motori di Ricerca (SEO)"
             },
             'link': ""
-        }
+        },
+        {       // Python OpenCV support
+            'title': {
+                'pt': "Correção automatizada de gabarito",
+                'en': "Automated Answer Sheet Grading",
+                'it': "Correzione Automatica del Questionario"
+            },
+            'type': {
+                'pt': `${project_types[2]['pt']}, ${project_types[3]['pt']}`,
+                'en': `${project_types[2]['en']}, ${project_types[3]['en']}`,
+                'it': `${project_types[2]['it']}, ${project_types[3]['it']}`
+            },
+            'longDescription': {
+                'pt': "Eu aprimorei um sistema Python de correção de gabaritos, originalmente projetado para 10 questões, atendendo a uma demanda específica de um cliente. Adaptei o código para funcionar com 20 questões, ajustando a lógica para trabalhar com um layout onde as questões são dispostas horizontalmente e as alternativas verticalmente. Além disso, melhorei a interface de visualização dos resultados, implementando uma sobreposição com fundo preto e texto branco que garantiu melhor legibilidade e uma experiência de usuário superior. Esses ajustes ampliaram a funcionalidade do sistema e automatizaram o processo de correção, tornando-o mais robusto e visualmente intuitivo.",
+                'en': "I enhanced a Python-based answer sheet grading system originally designed for 10 questions at the request of a client. I adapted the code to handle 20 questions by adjusting the logic to work with a layout where questions are arranged horizontally and answer options vertically. Additionally, I improved the result visualization interface by implementing an overlay with a black background and white text, ensuring better readability and an enhanced user experience. These modifications expanded the system's functionality and automated the grading process, making it more robust and visually intuitive.",
+                'it': "Ho migliorato un sistema Python per la correzione dei questionari, originariamente progettato per 10 domande, su richiesta di un cliente. Ho adattato il codice per gestire 20 domande, modificando la logica per funzionare con un layout in cui le domande sono disposte orizzontalmente e le opzioni di risposta verticalmente. Inoltre, ho perfezionato l'interfaccia di visualizzazione dei risultati implementando una sovrapposizione con sfondo nero e testo bianco, garantendo così una migliore leggibilità e un'esperienza utente superiore. Questi aggiornamenti hanno ampliato le funzionalità del sistema e automatizzato il processo di correzione, rendendolo più robusto e visivamente intuitivo."
+            },
+            'details': {
+                'pt': "Python, OpenCV, NumPy, Visão Computacional, UX, transformações matriciais",
+                'en': "Python, OpenCV, NumPy, Computer Vision, UX, matrix transformations",
+                'it': "Python, OpenCV, NumPy, Visione Computazionale, UX, trasformazioni matriciali"
+            },
+            'link': ""
+        },
+        
         
     ],
     projectsFilter: [
