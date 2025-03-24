@@ -12,7 +12,7 @@ export default function Personal (props) {
     const [projectsList, setProjectsList] = useState(Texts.projects);
     
     useEffect(() => {
-        const filteredList = Texts.projects.filter(proj => filter === 'all' ? true : proj.type['en'] === filter)
+        const filteredList = Texts.projects.filter(proj => filter === 'all' ? true : filter in [proj.type['en'].split(", ")])
         setProjectsList(filteredList)
     }, [filter])
 
